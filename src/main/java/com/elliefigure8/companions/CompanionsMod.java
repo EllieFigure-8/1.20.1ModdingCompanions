@@ -1,6 +1,7 @@
 package com.elliefigure8.companions;
 
 import com.elliefigure8.companions.block.ModBlocks;
+import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTab;
@@ -30,6 +31,8 @@ public class CompanionsMod
     public CompanionsMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);

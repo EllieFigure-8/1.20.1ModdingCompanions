@@ -2,5 +2,7 @@
   "item.companionsmod.bronze_coin": "Bronze Coin",
   "item.companionsmod.silver_coin": "Silver Coin",
 
-  "block.companionsmod.aurorita_ore": "Aurorita Ore"
+  "block.companionsmod.aurorita_ore": "Aurorita Ore",
+
+  "creativetab.companions_tab": "Companions Tab"
 }
