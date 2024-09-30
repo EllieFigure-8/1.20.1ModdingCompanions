@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "companionsmod:silver_coin"
+    }
+  ],
+  "result": {
+    "item": "companionsmod:bronze_coin",
+    "count": 9
+  }
+}
