@@ -20,8 +20,10 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.BRONZE_COIN.get());
                         pOutput.accept(ModItems.SILVER_COIN.get());
+                        pOutput.accept(ModItems.METAL_DETECTOR.get());
 
                         pOutput.accept(ModBlocks.AURORITA_ORE.get());
+
 
                     }).build());
 

@@ -1,6 +1,7 @@
 package com.elliefigure8.companions.item;
 
 import com.elliefigure8.companions.CompanionsMod;
+import com.elliefigure8.companions.item.custom.MetalDetectorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +23,11 @@ public class ModItems
             () -> new Item(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> METAL_DETECTOR = ITEMS.register("metal_detector",
+            () -> new MetalDetectorItem(new Item.Properties()
+                    .rarity(Rarity.COMMON)
+                    .durability(200)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

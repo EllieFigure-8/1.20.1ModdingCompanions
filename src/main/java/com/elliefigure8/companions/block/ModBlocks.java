@@ -2,10 +2,12 @@ package com.elliefigure8.companions.block;
 
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.ModItems;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -21,10 +23,11 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, CompanionsMod.MOD_ID);
 
     public static final RegistryObject<Block> AURORITA_ORE = registerBlock("aurorita_ore",
-    () -> new Block(BlockBehaviour.Properties.of()
+    () -> new DropExperienceBlock(BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_PURPLE)
             .strength(5.0f, 10)
-            .sound(SoundType.STONE)));
+            .sound(SoundType.STONE)
+            .requiresCorrectToolForDrops(), UniformInt.of(5,9)));
 
 
 

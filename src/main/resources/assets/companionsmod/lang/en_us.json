@@ -1,8 +1,11 @@
 {
   "item.companionsmod.bronze_coin": "Bronze Coin",
   "item.companionsmod.silver_coin": "Silver Coin",
+  "item.companionsmod.metal_detector": "Metal Detector",
 
   "block.companionsmod.aurorita_ore": "Aurorita Ore",
 
-  "creativetab.companions_tab": "Companions Tab"
+  "creativetab.companions_tab": "Companions Tab",
+
+  "item.companionsmod.metal_detector.no_valuables": "No Valuables Found!"
 }
