@@ -2,7 +2,7 @@ package com.elliefigure8.companions.item;
 
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.custom.MetalDetectorItem;
-import com.elliefigure8.companions.item.custom.dodges.YellowBeltItem;
+import com.elliefigure8.companions.item.custom.dodges.BeltItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -31,7 +31,12 @@ public class ModItems
                     .durability(200)));
 
     public static final RegistryObject<Item> YELLOW_BELT = ITEMS.register( "yellow_belt",
-            () -> new YellowBeltItem(new Item.Properties()
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> GREEN_BELT = ITEMS.register( "green_belt",
+            () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 

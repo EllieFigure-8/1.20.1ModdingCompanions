@@ -10,8 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class YellowBeltItem extends Item {
-    public YellowBeltItem(Properties pProperties) {super(pProperties);}
+public class BeltItem extends Item {
+    public BeltItem(Properties pProperties) {super(pProperties);}
 
     public static boolean canDodge = true;
     public static int dodgeCooldown = 0;
@@ -33,7 +33,6 @@ public class YellowBeltItem extends Item {
                     player.sendSystemMessage(Component.literal("Cooldown Resetted! Dodge Ready!"));
                 }
             }
-
         }
     }
 

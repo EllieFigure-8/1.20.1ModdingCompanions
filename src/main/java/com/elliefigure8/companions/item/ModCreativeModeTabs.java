@@ -24,6 +24,7 @@ public class ModCreativeModeTabs {
 
                         //Dodges
                         pOutput.accept(ModItems.YELLOW_BELT.get());
+                        pOutput.accept(ModItems.GREEN_BELT.get());
 
                         //Blocks
                         pOutput.accept(ModBlocks.AURORITA_ORE.get());
