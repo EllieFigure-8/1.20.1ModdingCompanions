@@ -3,6 +3,12 @@
   "item.companionsmod.silver_coin": "Silver Coin",
   "item.companionsmod.metal_detector": "Metal Detector",
 
+  "item.companionsmod.yellow_belt": "Yellow Belt",
+  "item.companionsmod.yellow_belt.dodge_activated": "Dodge Activated",
+
+
+
+
   "block.companionsmod.aurorita_ore": "Aurorita Ore",
 
   "creativetab.companions_tab": "Companions Tab",

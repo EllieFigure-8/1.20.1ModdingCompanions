@@ -22,6 +22,10 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.SILVER_COIN.get());
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
 
+                        //Dodges
+                        pOutput.accept(ModItems.YELLOW_BELT.get());
+
+                        //Blocks
                         pOutput.accept(ModBlocks.AURORITA_ORE.get());
 
 
