@@ -1,14 +1,10 @@
 package com.elliefigure8.companions.item.custom.dodges;
 
-import com.elliefigure8.companions.item.ModItems;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class BeltItem extends Item {
     public BeltItem(Properties pProperties) {super(pProperties);}
@@ -19,7 +15,7 @@ public class BeltItem extends Item {
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
-        if(level.isClientSide)
+        if(!level.isClientSide)
         {
             if (!canDodge)
             {
