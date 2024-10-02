@@ -31,7 +31,6 @@ public class BeltItem extends Item {
             }
         }
     }
-
     public static int calculateCooldown(int roundedDamage)
     {
         int ticksCooldown = roundedDamage * 270;
