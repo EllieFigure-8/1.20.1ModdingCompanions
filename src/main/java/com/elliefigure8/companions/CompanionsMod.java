@@ -38,8 +38,7 @@ public class CompanionsMod
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
-        //Events onLivingHurt?
-        //MinecraftForge.EVENT_BUS.register(new BeltDodgeEvent());
+        //Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);
 
         // Register the commonSetup method for modloading

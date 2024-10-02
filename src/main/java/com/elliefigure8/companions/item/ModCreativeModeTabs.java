@@ -23,11 +23,16 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
 
                         //Dodges
+                        pOutput.accept(ModItems.WHITE_BELT.get());
                         pOutput.accept(ModItems.YELLOW_BELT.get());
                         pOutput.accept(ModItems.GREEN_BELT.get());
+                        pOutput.accept(ModItems.BLUE_BELT.get());
+                        pOutput.accept(ModItems.RED_BELT.get());
+                        pOutput.accept(ModItems.BLACK_BELT.get());
 
                         //Blocks
                         pOutput.accept(ModBlocks.AURORITA_ORE.get());
+                        pOutput.accept(ModBlocks.SOUND_BLOCK.get());
 
 
                     }).build());

@@ -30,6 +30,12 @@ public class ModItems
                     .rarity(Rarity.COMMON)
                     .durability(200)));
 
+    //Dodges
+    public static final RegistryObject<Item> WHITE_BELT = ITEMS.register( "white_belt",
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
     public static final RegistryObject<Item> YELLOW_BELT = ITEMS.register( "yellow_belt",
             () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
@@ -39,6 +45,23 @@ public class ModItems
             () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> BLUE_BELT = ITEMS.register( "blue_belt",
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> RED_BELT = ITEMS.register( "red_belt",
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> BLACK_BELT = ITEMS.register( "black_belt",
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

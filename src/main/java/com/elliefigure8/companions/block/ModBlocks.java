@@ -1,7 +1,9 @@
 package com.elliefigure8.companions.block;
 
 import com.elliefigure8.companions.CompanionsMod;
+import com.elliefigure8.companions.block.custom.SoundBlock;
 import com.elliefigure8.companions.item.ModItems;
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -29,7 +31,8 @@ public class ModBlocks {
             .sound(SoundType.STONE)
             .requiresCorrectToolForDrops(), UniformInt.of(5,9)));
 
-
+    public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
+            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block)
