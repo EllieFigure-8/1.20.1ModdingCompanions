@@ -1,8 +1,13 @@
 package com.elliefigure8.companions.block.custom;
 
+import com.elliefigure8.companions.CompanionsMod;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -18,28 +23,31 @@ public class SoundBlock extends Block
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
     {
-        if(pLevel.isClientSide())
+        if(!pLevel.isClientSide() && pHand == InteractionHand.MAIN_HAND)
         {
-            if (pHand == InteractionHand.MAIN_HAND) {
-                System.out.println("Main Hand, Client");
+            if(pPlayer.isCrouching())
+            {
+                pLevel.playSound(null, pPos, SoundEvents.NOTE_BLOCK_BANJO.get(), SoundSource.BLOCKS, 1f,1f);
+                return InteractionResult.SUCCESS;
             }
             else
             {
-                System.out.println("Off Hand, Client");
+                pLevel.playSound(null, pPos, SoundEvents.NOTE_BLOCK_COW_BELL.get(), SoundSource.BLOCKS, 1f,1f);
+                return InteractionResult.CONSUME;
             }
         }
-        else
-        {
-            if (pHand == InteractionHand.MAIN_HAND)
-            {
-                System.out.println("Main Hand, Server");
-            }
-            else
-            {
-                System.out.println("Off Hand, Server");
-            }
-        }
+
+        //InteractionResult.CONSUME //MOVES HAND AND DOESN'T APPLY OTHER INTERACTIONS.
+        //InteractionResult.SUCCESS //DOESN'T MOVE HAND
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+    }
+
+    @Override
+    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity)
+    {
+        pLevel.playSound(pEntity, pPos, SoundEvents.NOTE_BLOCK_BIT.get(), SoundSource.BLOCKS, 1f, 1f);
+
+        super.stepOn(pLevel, pPos, pState, pEntity);
     }
 }
 

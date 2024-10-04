@@ -1,10 +1,16 @@
 package com.elliefigure8.companions.item.custom.dodges;
 
+import com.elliefigure8.companions.item.ModItems;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BeltItem extends Item {
     public BeltItem(Properties pProperties) {super(pProperties);}
@@ -12,22 +18,39 @@ public class BeltItem extends Item {
     public static boolean canDodge = true;
     public static int dodgeCooldown = 0;
 
+    public static boolean RedBeltParryUsed = false;
+    public static int RedBeltParrySharedCooldown = 300;
+
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
-        if(!level.isClientSide)
+        if (!RedBeltParryUsed)
         {
-            if (!canDodge)
+            if(!level.isClientSide)
             {
-                if (dodgeCooldown > 0)
+                if (!canDodge)
                 {
-                    dodgeCooldown--;
+                    if (dodgeCooldown > 0)
+                    {
+                        dodgeCooldown--;
+                    }
+                    else
+                    {
+                        canDodge = true;
+                        player.sendSystemMessage(Component.literal("Cooldown Resetted! Dodge Ready!"));
+                    }
                 }
-                else
-                {
-                    canDodge = true;
-                    player.sendSystemMessage(Component.literal("Cooldown Resetted! Dodge Ready!"));
-                }
+            }
+        }
+
+        if (RedBeltParryUsed)
+        {
+            RedBeltParrySharedCooldown--;
+            if (RedBeltParrySharedCooldown <= 0)
+            {
+                RedBeltParryUsed = false;
+                RedBeltParrySharedCooldown = 300;
+                System.out.println("RedBelt Dodge and Parry can be used!");
             }
         }
     }
@@ -42,6 +65,35 @@ public class BeltItem extends Item {
             ticksCooldown = 300;
         }
         return ticksCooldown;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+
+        if(Screen.hasShiftDown())
+        {
+            if (pStack.getItem() == ModItems.RED_BELT.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.red_belt.tooltip.shift"));
+            }
+            else if (pStack.getItem() == ModItems.BLACK_BELT.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.black_belt.tooltip.shift"));
+            }
+        }
+        else
+        {
+            if (pStack.getItem() == ModItems.RED_BELT.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.red_belt.tooltip"));
+            }
+            else if (pStack.getItem() == ModItems.BLACK_BELT.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.black_belt.tooltip"));
+            }
+        }
+
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }
 

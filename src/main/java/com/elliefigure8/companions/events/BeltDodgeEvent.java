@@ -37,21 +37,21 @@ public class BeltDodgeEvent
             int roundedDamage = (int) Math.ceil(damage);
             event.setAmount(0);
 
-            BeltItem.dodgeCooldown = BeltItem.calculateCooldown(roundedDamage);
-            canDodge = false;
-            player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
-            player.sendSystemMessage(Component.literal("Cooldown: " + BeltItem.dodgeCooldown / 20 + " seconds."));
-
             if (hasGreenBelt)
             {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0));
             }
 
-            if (hasBlueBelt)
+            if (hasBlueBelt || hasRedBelt || hasBlackBelt)
             {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1));
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0));
             }
+
+            BeltItem.dodgeCooldown = BeltItem.calculateCooldown(roundedDamage);
+            canDodge = false;
+            player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
+            player.sendSystemMessage(Component.literal("Cooldown: " + BeltItem.dodgeCooldown / 20 + " seconds."));
         }
     }
 }

@@ -1,7 +1,8 @@
-package com.elliefigure8.companions.item;
+package com.elliefigure8.companions.item.custom;
 
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.block.ModBlocks;
+import com.elliefigure8.companions.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,6 +23,12 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.SILVER_COIN.get());
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
 
+                        //Foods
+                        pOutput.accept(ModItems.SUSPICIOUS_LOOKING_FUNGI.get());
+
+                        //Fuel
+                        pOutput.accept(ModItems.PEAT_BRICK.get());
+
                         //Dodges
                         pOutput.accept(ModItems.WHITE_BELT.get());
                         pOutput.accept(ModItems.YELLOW_BELT.get());
@@ -29,6 +36,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.BLUE_BELT.get());
                         pOutput.accept(ModItems.RED_BELT.get());
                         pOutput.accept(ModItems.BLACK_BELT.get());
+
+                        //Parries
+                        pOutput.accept(ModItems.PARRY_ITEM.get());
 
                         //Blocks
                         pOutput.accept(ModBlocks.AURORITA_ORE.get());

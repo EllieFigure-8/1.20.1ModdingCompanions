@@ -2,10 +2,10 @@ package com.elliefigure8.companions;
 
 import com.elliefigure8.companions.block.ModBlocks;
 import com.elliefigure8.companions.events.BeltDodgeEvent;
-import com.elliefigure8.companions.item.ModCreativeModeTabs;
+import com.elliefigure8.companions.events.ParryItemEvent;
+import com.elliefigure8.companions.item.custom.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,9 +13,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,7 +25,7 @@ public class CompanionsMod
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "companionsmod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public CompanionsMod()
     {
@@ -40,6 +38,7 @@ public class CompanionsMod
 
         //Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);
+        MinecraftForge.EVENT_BUS.register(ParryItemEvent.class);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
