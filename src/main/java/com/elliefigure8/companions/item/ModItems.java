@@ -6,8 +6,7 @@ import com.elliefigure8.companions.item.custom.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.ModFoodProperties;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
 import com.elliefigure8.companions.item.custom.parries.ParryItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -37,6 +36,38 @@ public class ModItems
             () -> new Item(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)));
+    //Weapons and Tools
+    public static final RegistryObject<Item> AURORITA_SWORD = ITEMS.register("aurorita_sword",
+            () -> new SwordItem(
+                    ModToolTiers.AURORITA,
+                    7,
+                    -2.4f,
+                    new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> AURORITA_AXE = ITEMS.register("aurorita_axe",
+            () -> new AxeItem(
+                    ModToolTiers.AURORITA,
+                    9,
+                    -3.0f,
+                    new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> AURORITA_PICKAXE = ITEMS.register("aurorita_pickaxe",
+            () -> new PickaxeItem(
+                    ModToolTiers.AURORITA,
+                    4,
+                    -2.4f,
+                    new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> AURORITA_SHOVEL = ITEMS.register("aurorita_shovel",
+            () -> new ShovelItem(
+                    ModToolTiers.AURORITA,
+                    5,
+                    -2.4f,
+                    new Item.Properties()
+            ));
 
     //Foods
     public static final RegistryObject<Item> SUSPICIOUS_LOOKING_FUNGI = ITEMS.register( "suspicious_looking_fungi",

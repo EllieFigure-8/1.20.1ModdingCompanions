@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "companionsmod:aurorita_ore"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "companionsmod:aurorita_fragment"
+  }
+}

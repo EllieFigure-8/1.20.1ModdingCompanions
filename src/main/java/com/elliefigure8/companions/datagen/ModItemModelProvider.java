@@ -30,6 +30,11 @@ public class ModItemModelProvider extends ItemModelProvider
         simpleItem(ModItems.METAL_DETECTOR);
         simpleItem(ModItems.PEAT_BRICK);
 
+        handheldItem(ModItems.AURORITA_AXE);
+        handheldItem(ModItems.AURORITA_PICKAXE);
+        handheldItem(ModItems.AURORITA_SWORD);
+        handheldItem(ModItems.AURORITA_SHOVEL);
+
         simpleItem(ModItems.WHITE_BELT);
         simpleItem(ModItems.YELLOW_BELT);
         simpleItem(ModItems.GREEN_BELT);
@@ -39,6 +44,14 @@ public class ModItemModelProvider extends ItemModelProvider
         simpleItem(ModItems.GOLDEN_BELT);
 
     }
+
+    private ItemModelBuilder handheldItem(RegistryObject<Item> item)
+    {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(CompanionsMod.MOD_ID, "item/" + item.getId().getPath()));
+    }
+
     private ItemModelBuilder simpleItem(RegistryObject<Item> item)
     {
         return withExistingParent(item.getId().getPath(),

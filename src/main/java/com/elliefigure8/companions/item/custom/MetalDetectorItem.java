@@ -1,9 +1,11 @@
 package com.elliefigure8.companions.item.custom;
 
+import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.ModTags;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -34,6 +36,9 @@ public class MetalDetectorItem extends Item {
                 {
                     outputValuableCoordinates(positionClicked.below(i), player, blockState.getBlock());
                     foundBlock = true;
+
+                    //pContext.getLevel().playSeededSound(null, player.getX(), player.getY(), player.getZ(),
+                           // ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
                     break;
                 }

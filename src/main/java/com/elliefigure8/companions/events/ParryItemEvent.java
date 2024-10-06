@@ -3,6 +3,8 @@ package com.elliefigure8.companions.events;
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
 import com.elliefigure8.companions.item.custom.parries.ParryItem;
+import com.elliefigure8.companions.sound.ModSounds;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -25,10 +27,12 @@ public class ParryItemEvent
         {
             if (ParryItem.parryDuration > 0 && ParryItem.hasPressedParry)
             {
+                player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                 System.out.println("Daño Parrieado.");
                 event.setAmount(0);
                 ParryItem.cooldown = ParryItem.maxCooldown;
                 ParryItem.hasParry = false;
+                ParryItem.hasParriedAttack = true;
                 if (hasRedBelt)
                 {
                     BeltItem.RedBeltParryUsed = true;

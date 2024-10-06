@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static com.elliefigure8.companions.item.custom.dodges.BeltItem.canDodge;
+
 
 public class BeltDodgeEvent
 {
@@ -31,7 +31,7 @@ public class BeltDodgeEvent
         if (hasWhiteBelt && Math.random() >= 0.5) return;
         if (!hasDodgeBelt) return;
 
-        if (BeltItem.canDodge)
+        if (BeltItem.canDodge) //&& !BeltItem.hasPressedParry)
         {
             float damage = event.getAmount();
             int roundedDamage = (int) Math.ceil(damage);
@@ -49,7 +49,7 @@ public class BeltDodgeEvent
             }
 
             BeltItem.dodgeCooldown = BeltItem.calculateCooldown(roundedDamage);
-            canDodge = false;
+            BeltItem.canDodge = false;
             player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
             player.sendSystemMessage(Component.literal("Cooldown: " + BeltItem.dodgeCooldown / 20 + " seconds."));
         }

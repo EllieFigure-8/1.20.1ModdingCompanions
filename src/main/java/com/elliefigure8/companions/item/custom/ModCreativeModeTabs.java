@@ -24,6 +24,12 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
                         pOutput.accept(ModItems.AURORITA_FRAGMENT.get());
 
+                        //Weapons and Tools
+                        pOutput.accept(ModItems.AURORITA_AXE.get());
+                        pOutput.accept(ModItems.AURORITA_PICKAXE.get());
+                        pOutput.accept(ModItems.AURORITA_SHOVEL.get());
+                        pOutput.accept(ModItems.AURORITA_SWORD.get());
+
                         //Foods
                         pOutput.accept(ModItems.SUSPICIOUS_LOOKING_FUNGI.get());
 

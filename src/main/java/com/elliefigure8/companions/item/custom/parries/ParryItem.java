@@ -1,6 +1,9 @@
+
 package com.elliefigure8.companions.item.custom.parries;
 
 import com.elliefigure8.companions.registry.KeyBindRegistry;
+import com.elliefigure8.companions.sound.ModSounds;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,23 +24,32 @@ public class ParryItem extends Item
     public static int parryDuration = 20;
     public static boolean hasParry = false;
     public static boolean hasPressedParry = false;
+    public static boolean hasParriedAttack = false;
 
 
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
         if (KeyBindRegistry.ParryAbilityKey.consumeClick() && hasParry && !hasPressedParry) {
+            player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_ACTIVATED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
             hasPressedParry = true;
             System.out.println("Parry Activado.");
         }
 
         if (hasPressedParry) {
             parryDuration--;
-            if (parryDuration <= 0) {
-                cooldown = maxCooldown;
-                hasParry = false;
+            if (!ParryItem.hasParriedAttack)
+            {
+                if (parryDuration <= 0) {
+                    cooldown = maxCooldown;
+                    hasParry = false;
+                    hasPressedParry = false;
+                    System.out.println("Parry Desactivado. Iniciando Cooldown.");
+                }
+            }
+            else
+            {
                 hasPressedParry = false;
-                System.out.println("Parry Desactivado. Iniciando Cooldown.");
             }
         }
 
@@ -45,7 +57,9 @@ public class ParryItem extends Item
             cooldown--;
             if (cooldown <= 0) {
                 hasParry = true;
+                hasParriedAttack = false;
                 parryDuration = maxParryDuration;
+                player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_RECHARGED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                 System.out.println("Cooldown Terminado.");
             }
         }

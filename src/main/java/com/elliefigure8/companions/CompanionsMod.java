@@ -5,6 +5,7 @@ import com.elliefigure8.companions.events.BeltDodgeEvent;
 import com.elliefigure8.companions.events.ParryItemEvent;
 import com.elliefigure8.companions.item.custom.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
+import com.elliefigure8.companions.sound.ModSounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,6 +36,7 @@ public class CompanionsMod
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         //Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);

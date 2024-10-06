@@ -1,8 +1,11 @@
 package com.elliefigure8.companions.item.custom.dodges;
 
 import com.elliefigure8.companions.item.ModItems;
+import com.elliefigure8.companions.registry.KeyBindRegistry;
+import com.elliefigure8.companions.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -54,6 +57,7 @@ public class BeltItem extends Item {
             }
         }
     }
+
     public static int calculateCooldown(int roundedDamage)
     {
         int ticksCooldown = roundedDamage * 270;

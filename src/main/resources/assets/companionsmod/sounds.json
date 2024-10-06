@@ -1,0 +1,20 @@
+{
+  "damage_parried":{
+    "subtitle": "sounds.companionsmod.damage_parried",
+    "sounds": [
+      "companionsmod:damage_parried"
+    ]
+  },
+  "parry_activated":{
+    "subtitle": "sounds.companionsmod.parry_activated",
+    "sounds": [
+      "companionsmod:parry_activated"
+    ]
+  },
+  "parry_recharged":{
+    "subtitle": "sounds.companionsmod.parry_recharged",
+    "sounds": [
+      "companionsmod:parry_recharged"
+    ]
+  }
+}
