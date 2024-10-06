@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "companionsmod:block/aurorita_ore"
-  }
-}

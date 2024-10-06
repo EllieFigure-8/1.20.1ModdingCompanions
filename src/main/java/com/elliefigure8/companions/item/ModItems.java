@@ -33,6 +33,11 @@ public class ModItems
                     .rarity(Rarity.COMMON)
                     .durability(200)));
 
+    public static final RegistryObject<Item> AURORITA_FRAGMENT = ITEMS.register( "aurorita_fragment",
+            () -> new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
+
     //Foods
     public static final RegistryObject<Item> SUSPICIOUS_LOOKING_FUNGI = ITEMS.register( "suspicious_looking_fungi",
             () -> new Item(new Item.Properties().food(ModFoodProperties.SUSPICIOUS_LOOKING_FUNGI)));
@@ -68,6 +73,10 @@ public class ModItems
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> BLACK_BELT = ITEMS.register( "black_belt",
+            () -> new BeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> GOLDEN_BELT = ITEMS.register( "golden_belt",
             () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));

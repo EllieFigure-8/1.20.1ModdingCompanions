@@ -1,5 +1,6 @@
 package com.elliefigure8.companions.item.custom;
 
+import com.elliefigure8.companions.util.ModTags;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -63,6 +64,6 @@ public class MetalDetectorItem extends Item {
 
     private boolean isValuableBlock(BlockState blockState)
     {
-        return blockState.is(Blocks.IRON_ORE) || blockState.is(Blocks.DEEPSLATE_IRON_ORE);
+        return blockState.is(ModTags.Blocks.METAL_DETECTOR_VALUABLES);
     }
 }

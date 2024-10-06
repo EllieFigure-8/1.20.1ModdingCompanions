@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.BRONZE_COIN.get());
                         pOutput.accept(ModItems.SILVER_COIN.get());
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
+                        pOutput.accept(ModItems.AURORITA_FRAGMENT.get());
 
                         //Foods
                         pOutput.accept(ModItems.SUSPICIOUS_LOOKING_FUNGI.get());
@@ -36,6 +37,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.BLUE_BELT.get());
                         pOutput.accept(ModItems.RED_BELT.get());
                         pOutput.accept(ModItems.BLACK_BELT.get());
+                        pOutput.accept(ModItems.GOLDEN_BELT.get());
 
                         //Parries
                         pOutput.accept(ModItems.PARRY_ITEM.get());
