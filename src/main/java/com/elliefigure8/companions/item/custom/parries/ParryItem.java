@@ -50,7 +50,7 @@ public class ParryItem extends Item
             else
             {
                 hasPressedParry = false;
-            }
+            } //
         }
 
         if (!hasParry) {
