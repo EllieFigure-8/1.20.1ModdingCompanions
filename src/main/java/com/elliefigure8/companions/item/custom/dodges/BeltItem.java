@@ -47,24 +47,25 @@ public class BeltItem extends Item {
                 System.out.println("Parry Activado.");
             }
 
-            if (hasPressedParry)
-            {
+            if (hasPressedParry) {
                 parryDuration--;
-                if (!hasParriedAttack && parryDuration <= 0)
+
+                if (parryDuration <= 0 || hasParriedAttack)
                 {
                     Parrycooldown = getMaxParryCooldown;
                     hasParry = false;
                     hasPressedParry = false;
-                    System.out.println("Parry Desactivado. Iniciando Cooldown.");
-                }
-                else if (hasParriedAttack)
-                {
-                    Parrycooldown = getMaxParryCooldown;
-                    parryDuration = maxParryDuration;
-                    hasParry = false;
-                    hasPressedParry = false;
-                    hasParriedAttack = false;
-                    System.out.println("Hiciste Parry. Cancelando Parry Duration.");
+
+                    if (hasParriedAttack)
+                    {
+                        parryDuration = maxParryDuration;
+                        hasParriedAttack = false;
+                        System.out.println("Hiciste Parry. Cancelando Parry Duration.");
+                    }
+                    else
+                    {
+                        System.out.println("Parry Desactivado. Iniciando Cooldown.");
+                    }
                 }
             }
 
