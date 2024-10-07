@@ -35,24 +35,30 @@ public class BeltItem extends Item {
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
-        if (!level.isClientSide) {
+        if (!level.isClientSide)
+        {
             boolean beltCanParry = player.getInventory().contains(new ItemStack(ModItems.RED_BELT.get())) ||
                     player.getInventory().contains(new ItemStack(ModItems.BLACK_BELT.get()));
 
-            if (KeyBindRegistry.ParryAbilityKey.consumeClick() && beltCanParry && hasParry && !hasPressedParry) {
+            if (KeyBindRegistry.ParryAbilityKey.consumeClick() && beltCanParry && hasParry && !hasPressedParry)
+            {
                 player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_ACTIVATED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                 hasPressedParry = true;
                 System.out.println("Parry Activado.");
             }
 
-            if (hasPressedParry) {
+            if (hasPressedParry)
+            {
                 parryDuration--;
-                if (!hasParriedAttack && parryDuration <= 0) {
+                if (!hasParriedAttack && parryDuration <= 0)
+                {
                     Parrycooldown = getMaxParryCooldown;
                     hasParry = false;
                     hasPressedParry = false;
                     System.out.println("Parry Desactivado. Iniciando Cooldown.");
-                } else if (hasParriedAttack) {
+                }
+                else if (hasParriedAttack)
+                {
                     Parrycooldown = getMaxParryCooldown;
                     parryDuration = maxParryDuration;
                     hasParry = false;
@@ -62,9 +68,11 @@ public class BeltItem extends Item {
                 }
             }
 
-            if (!hasParry) {
+            if (!hasParry)
+            {
                 Parrycooldown--;
-                if (Parrycooldown <= 0) {
+                if (Parrycooldown <= 0)
+                {
                     hasParry = true;
                     parryDuration = maxParryDuration;
                     player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_RECHARGED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
@@ -72,18 +80,23 @@ public class BeltItem extends Item {
                 }
             }
 
-            if (!RedBeltParryUsed  && !canDodge) {
+            if (!RedBeltParryUsed  && !canDodge)
+            {
                 if (dodgeCooldown > 0) {
                     dodgeCooldown--;
-                } else {
+                }
+                else
+                {
                     canDodge = true;
                     player.sendSystemMessage(Component.literal("Cooldown Resetted! Dodge Ready!"));
                 }
             }
 
-            if (RedBeltParryUsed) {
+            if (RedBeltParryUsed)
+            {
                 RedBeltParrySharedCooldown--;
-                if (RedBeltParrySharedCooldown <= 0) {
+                if (RedBeltParrySharedCooldown <= 0)
+                {
                     RedBeltParryUsed = false;
                     RedBeltParrySharedCooldown = 300;
                     System.out.println("RedBelt Dodge and Parry can be used!");
