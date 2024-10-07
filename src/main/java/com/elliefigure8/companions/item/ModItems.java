@@ -5,7 +5,6 @@ import com.elliefigure8.companions.item.custom.FuelItem;
 import com.elliefigure8.companions.item.custom.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.ModFoodProperties;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
-import com.elliefigure8.companions.item.custom.parries.ParryItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -115,7 +114,7 @@ public class ModItems
 
     //Parries
     public static final RegistryObject<Item> PARRY_ITEM = ITEMS.register( "parry_item",
-            () -> new ParryItem(new Item.Properties()
+            () -> new Item(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 

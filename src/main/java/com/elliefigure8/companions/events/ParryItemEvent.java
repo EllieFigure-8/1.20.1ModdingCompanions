@@ -1,8 +1,7 @@
-package com.elliefigure8.companions.events;
+/* package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
-import com.elliefigure8.companions.item.custom.parries.ParryItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -21,18 +20,18 @@ public class ParryItemEvent
 
         boolean hasParryItem = hasRedBelt || hasBlackBelt || hasParryItemTheItem;
 
-        if (!ParryItem.hasParry) return;
+        if (!BeltItem.hasParry) return;
 
         if (hasParryItem)
         {
-            if (ParryItem.parryDuration > 0 && ParryItem.hasPressedParry)
+            if (BeltItem.parryDuration > 0 && BeltItem.hasPressedParry)
             {
                 player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                 System.out.println("Daño Parrieado.");
                 event.setAmount(0);
-                ParryItem.cooldown = ParryItem.maxCooldown;
-                ParryItem.hasParry = false;
-                ParryItem.hasParriedAttack = true;
+                BeltItem.cooldown = BeltItem.maxCooldown;
+                BeltItem.hasParry = false;
+                BeltItem.hasParriedAttack = true;
                 if (hasRedBelt)
                 {
                     BeltItem.RedBeltParryUsed = true;
@@ -41,4 +40,4 @@ public class ParryItemEvent
             }
         }
     }
-}
+} */

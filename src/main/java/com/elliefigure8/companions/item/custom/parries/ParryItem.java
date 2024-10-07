@@ -1,4 +1,4 @@
-
+/*
 package com.elliefigure8.companions.item.custom.parries;
 
 import com.elliefigure8.companions.registry.KeyBindRegistry;
@@ -64,4 +64,4 @@ public class ParryItem extends Item
             }
         }
     }
-}
+} */
