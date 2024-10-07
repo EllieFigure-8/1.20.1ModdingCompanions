@@ -72,7 +72,7 @@ public class BeltItem extends Item {
                 }
             }
 
-            if (!RedBeltParryUsed && !level.isClientSide && !canDodge) {
+            if (!RedBeltParryUsed  && !canDodge) {
                 if (dodgeCooldown > 0) {
                     dodgeCooldown--;
                 } else {
