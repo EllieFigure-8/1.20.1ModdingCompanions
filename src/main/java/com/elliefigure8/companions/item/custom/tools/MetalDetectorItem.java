@@ -1,19 +1,15 @@
-package com.elliefigure8.companions.item.custom;
+package com.elliefigure8.companions.item.custom.tools;
 
-import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.ModTags;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class MetalDetectorItem extends Item {
     public MetalDetectorItem(Properties pProperties) {

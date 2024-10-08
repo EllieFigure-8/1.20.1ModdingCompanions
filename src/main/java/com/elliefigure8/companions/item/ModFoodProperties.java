@@ -1,4 +1,4 @@
-package com.elliefigure8.companions.item.custom;
+package com.elliefigure8.companions.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

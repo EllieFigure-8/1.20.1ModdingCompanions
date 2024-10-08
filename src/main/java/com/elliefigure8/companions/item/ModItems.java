@@ -2,9 +2,10 @@ package com.elliefigure8.companions.item;
 
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.custom.FuelItem;
-import com.elliefigure8.companions.item.custom.MetalDetectorItem;
-import com.elliefigure8.companions.item.custom.ModFoodProperties;
+import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
+import com.elliefigure8.companions.item.custom.paxel.PaxelItem;
+import com.elliefigure8.companions.item.custom.weapons.AuroritaSwordItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -37,7 +38,7 @@ public class ModItems
                     .rarity(Rarity.COMMON)));
     //Weapons and Tools
     public static final RegistryObject<Item> AURORITA_SWORD = ITEMS.register("aurorita_sword",
-            () -> new SwordItem(
+            () -> new AuroritaSwordItem(
                     ModToolTiers.AURORITA,
                     7,
                     -2.4f,
@@ -67,6 +68,23 @@ public class ModItems
                     -2.4f,
                     new Item.Properties()
             ));
+    public static final RegistryObject<Item> AURORITA_PAXEL = ITEMS.register("aurorita_paxel",
+            () -> new PaxelItem(
+                    ModToolTiers.AURORITA,
+                    5,
+                    -2.4f,
+                    new Item.Properties()
+            ));
+
+    //Armors
+    public static final RegistryObject<Item> AURORITA_HELMET = ITEMS.register("aurorita_helmet",
+            () -> new ArmorItem(ModArmorMaterials.AURORITA, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> AURORITA_CHESTPLATE = ITEMS.register("aurorita_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.AURORITA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> AURORITA_LEGGINGS = ITEMS.register("aurorita_leggings",
+            () -> new ArmorItem(ModArmorMaterials.AURORITA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> AURORITA_BOOTS = ITEMS.register("aurorita_boots",
+            () -> new ArmorItem(ModArmorMaterials.AURORITA, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     //Foods
     public static final RegistryObject<Item> SUSPICIOUS_LOOKING_FUNGI = ITEMS.register( "suspicious_looking_fungi",

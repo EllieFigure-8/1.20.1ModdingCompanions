@@ -34,6 +34,12 @@ public class ModItemModelProvider extends ItemModelProvider
         handheldItem(ModItems.AURORITA_PICKAXE);
         handheldItem(ModItems.AURORITA_SWORD);
         handheldItem(ModItems.AURORITA_SHOVEL);
+        handheldItem(ModItems.AURORITA_PAXEL);
+
+        //simpleItem(ModItems.AURORITA_HELMET);
+        //simpleItem(ModItems.AURORITA_CHESTPLATE);
+        //simpleItem(ModItems.AURORITA_LEGGINGS);
+        //simpleItem(ModItems.AURORITA_BOOTS);
 
         simpleItem(ModItems.WHITE_BELT);
         simpleItem(ModItems.YELLOW_BELT);

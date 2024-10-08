@@ -1,8 +1,7 @@
-package com.elliefigure8.companions.item.custom;
+package com.elliefigure8.companions.item;
 
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.block.ModBlocks;
-import com.elliefigure8.companions.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,6 +28,13 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.AURORITA_PICKAXE.get());
                         pOutput.accept(ModItems.AURORITA_SHOVEL.get());
                         pOutput.accept(ModItems.AURORITA_SWORD.get());
+                        pOutput.accept(ModItems.AURORITA_PAXEL.get());
+
+                        //Armors
+                        pOutput.accept(ModItems.AURORITA_HELMET.get());
+                        pOutput.accept(ModItems.AURORITA_CHESTPLATE.get());
+                        pOutput.accept(ModItems.AURORITA_LEGGINGS.get());
+                        pOutput.accept(ModItems.AURORITA_BOOTS.get());
 
                         //Foods
                         pOutput.accept(ModItems.SUSPICIOUS_LOOKING_FUNGI.get());

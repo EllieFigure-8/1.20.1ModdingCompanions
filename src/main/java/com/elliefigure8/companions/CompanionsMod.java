@@ -2,7 +2,7 @@ package com.elliefigure8.companions;
 
 import com.elliefigure8.companions.block.ModBlocks;
 import com.elliefigure8.companions.events.BeltDodgeEvent;
-import com.elliefigure8.companions.item.custom.ModCreativeModeTabs;
+import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.mojang.logging.LogUtils;

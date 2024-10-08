@@ -28,6 +28,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.AURORITA_ORE.get());
 
+        this.tag(ModTags.Blocks.PAXEL_MINEABLE)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(BlockTags.MINEABLE_WITH_SHOVEL);
+
         //this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 //.add(ModBlocks.AURORITA_ORE.get());
 

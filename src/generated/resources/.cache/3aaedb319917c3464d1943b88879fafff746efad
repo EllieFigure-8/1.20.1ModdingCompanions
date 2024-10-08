@@ -1,6 +1,11 @@
-// 1.20.1	2024-10-06T00:25:56.3960263	Item Models: companionsmod
+// 1.20.1	2024-10-08T19:58:34.9050797	Item Models: companionsmod
 6ddf92edf9b5b49cc1ccc1711e854441923c6397 assets/companionsmod/models/item/aurorita_axe.json
+c75cb3af624f043c516c79a9851f7aa4b8eec4ae assets/companionsmod/models/item/aurorita_boots.json
+480157c8dfa373441bc91ad234391ae4e3107174 assets/companionsmod/models/item/aurorita_chestplate.json
 bca4ecbd663364b91891be321787b2ee763732e9 assets/companionsmod/models/item/aurorita_fragment.json
+33ac3d7f6de522bbd2a59e3dfba2c3ee0fb8e429 assets/companionsmod/models/item/aurorita_helmet.json
+0e43bc7a4bb20df27536efd2caff131c0339564c assets/companionsmod/models/item/aurorita_leggings.json
+b245abacca7266950670e8c5d37da2767cebb84a assets/companionsmod/models/item/aurorita_paxel.json
 7126ebb2270cd26c40986d12b00298a8ef8ce908 assets/companionsmod/models/item/aurorita_pickaxe.json
 14c1d424c906cfe5a95889bb70ae0c8aadaa1651 assets/companionsmod/models/item/aurorita_shovel.json
 8b41a8f8bb69c2f62dd48f06a72dcf978ee03546 assets/companionsmod/models/item/aurorita_sword.json

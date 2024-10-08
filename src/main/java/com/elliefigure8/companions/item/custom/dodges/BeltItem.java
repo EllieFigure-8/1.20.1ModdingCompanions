@@ -105,17 +105,11 @@ public class BeltItem extends Item {
             }
         }
     }
-
     public static int calculateCooldown(int roundedDamage)
     {
         int ticksCooldown = roundedDamage * 270;
-
-        if (ticksCooldown > 1800) {
-            ticksCooldown = 1800;
-        }
-        if (ticksCooldown < 300) {
-            ticksCooldown = 300;
-        }
+        if (ticksCooldown > 1800) {ticksCooldown = 1800;}
+        if (ticksCooldown < 300) {ticksCooldown = 300;}
         return ticksCooldown;
     }
 
