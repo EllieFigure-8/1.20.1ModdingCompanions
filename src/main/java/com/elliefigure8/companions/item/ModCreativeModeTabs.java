@@ -36,6 +36,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.AURORITA_LEGGINGS.get());
                         pOutput.accept(ModItems.AURORITA_BOOTS.get());
 
+                        //NBT DATA
+                        pOutput.accept(ModItems.DATA_TABLET.get());
+
                         //Foods
                         pOutput.accept(ModItems.SUSPICIOUS_LOOKING_FUNGI.get());
 

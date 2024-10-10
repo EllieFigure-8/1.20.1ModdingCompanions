@@ -1,7 +1,10 @@
 {
   "item.companionsmod.bronze_coin": "Bronze Coin",
   "item.companionsmod.silver_coin": "Silver Coin",
+
   "item.companionsmod.metal_detector": "Metal Detector",
+  "item.companionsmod.data_tablet": "Data Tablet",
+
   "item.companionsmod.aurorita_fragment": "Aurorita Fragment",
 
   "item.companionsmod.suspicious_looking_fungi": "Suspicious Looking Fungi",
@@ -36,6 +39,8 @@
   "key.dashability.activate": "Dash Ability",
   "key.leapability.activate": "Leap Ability",
   "key.parryability.activate": "Parry Ability",
+
+  "enchantment.companionsmod.lightning_striker": "Lightning Striker",
 
 
 
