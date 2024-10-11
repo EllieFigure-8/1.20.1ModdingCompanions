@@ -17,6 +17,16 @@ public class BeltDodgeEvent
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
+
+        boolean hasBeltEquipped = false;
+        for (ItemStack stack : player.getInventory().items) {
+            if (stack.getItem() instanceof BeltItem) {
+                hasBeltEquipped = true;
+                break; // Salir del bucle si encontramos un BeltItem
+            }
+        }
+        if (!hasBeltEquipped) return;
+
         boolean hasWhiteBelt = player.getInventory().contains(new ItemStack(ModItems.WHITE_BELT.get()));
         boolean hasYellowBelt = player.getInventory().contains(new ItemStack(ModItems.YELLOW_BELT.get()));
         boolean hasGreenBelt = player.getInventory().contains(new ItemStack(ModItems.GREEN_BELT.get()));
@@ -24,13 +34,14 @@ public class BeltDodgeEvent
         boolean hasRedBelt = player.getInventory().contains(new ItemStack(ModItems.RED_BELT.get()));
         boolean hasBlackBelt = player.getInventory().contains(new ItemStack(ModItems.BLACK_BELT.get()));
 
-        boolean hasDodgeBelt = hasYellowBelt || hasGreenBelt || hasBlueBelt || hasRedBelt || hasBlackBelt;
-        boolean hasParryItem = hasRedBelt || hasBlackBelt;
+        //boolean hasDodgeBelt = hasYellowBelt || hasGreenBelt || hasBlueBelt || hasRedBelt || hasBlackBelt;
+        //boolean hasParryItem = hasRedBelt || hasBlackBelt;
 
         if (hasWhiteBelt && Math.random() >= 0.5) return;
-        if (!hasDodgeBelt) return;
+        //if (!hasDodgeBelt) return;
 
-        if (hasParryItem && BeltItem.parryDuration > 0 && BeltItem.hasPressedParry) {
+        //hasParryItem &&
+        if (BeltItem.parryDuration > 0 && BeltItem.hasPressedParry) {
             player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
             System.out.println("Daño Parrieado.");
             event.setAmount(0);

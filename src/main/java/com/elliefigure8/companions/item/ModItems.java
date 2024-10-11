@@ -124,6 +124,7 @@ public class ModItems
             () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
+
     public static final RegistryObject<Item> GOLDEN_BELT = ITEMS.register( "golden_belt",
             () -> new BeltItem(new Item.Properties()
                     .stacksTo(1)
