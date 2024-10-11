@@ -1,6 +1,7 @@
 package com.elliefigure8.companions;
 
 import com.elliefigure8.companions.block.ModBlocks;
+import com.elliefigure8.companions.enchantment.ModEnchantments;
 import com.elliefigure8.companions.events.BeltDodgeEvent;
 import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
@@ -36,6 +37,8 @@ public class CompanionsMod
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModSounds.register(modEventBus);
+
+        ModEnchantments.register(modEventBus);
 
         //Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);

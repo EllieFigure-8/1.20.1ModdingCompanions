@@ -1,10 +1,6 @@
-// 1.20.1	2024-10-08T19:58:34.9050797	Item Models: companionsmod
+// 1.20.1	2024-10-10T19:34:29.2535063	Item Models: companionsmod
 6ddf92edf9b5b49cc1ccc1711e854441923c6397 assets/companionsmod/models/item/aurorita_axe.json
-c75cb3af624f043c516c79a9851f7aa4b8eec4ae assets/companionsmod/models/item/aurorita_boots.json
-480157c8dfa373441bc91ad234391ae4e3107174 assets/companionsmod/models/item/aurorita_chestplate.json
 bca4ecbd663364b91891be321787b2ee763732e9 assets/companionsmod/models/item/aurorita_fragment.json
-33ac3d7f6de522bbd2a59e3dfba2c3ee0fb8e429 assets/companionsmod/models/item/aurorita_helmet.json
-0e43bc7a4bb20df27536efd2caff131c0339564c assets/companionsmod/models/item/aurorita_leggings.json
 b245abacca7266950670e8c5d37da2767cebb84a assets/companionsmod/models/item/aurorita_paxel.json
 7126ebb2270cd26c40986d12b00298a8ef8ce908 assets/companionsmod/models/item/aurorita_pickaxe.json
 14c1d424c906cfe5a95889bb70ae0c8aadaa1651 assets/companionsmod/models/item/aurorita_shovel.json
@@ -12,6 +8,7 @@ b245abacca7266950670e8c5d37da2767cebb84a assets/companionsmod/models/item/aurori
 08225be9bb7bcaf74f548ab1d87a44bccf7d5010 assets/companionsmod/models/item/black_belt.json
 8a82ff7b27f5c4b2a043e29c36d0f20577c3d044 assets/companionsmod/models/item/blue_belt.json
 046f3251330b9bb5c75d4bd288002bc49105f84e assets/companionsmod/models/item/bronze_coin.json
+c392f13fc7cf462203dbe88c8ae18b993c026746 assets/companionsmod/models/item/data_tablet.json
 7af61dbd852074cf4bb2b4b2fde963c3f5398cee assets/companionsmod/models/item/golden_belt.json
 e75352045a4fe50a0331cbe001604de5e621e59e assets/companionsmod/models/item/green_belt.json
 d8079d36414e3ea75c25e282438913fb4f54c3bc assets/companionsmod/models/item/metal_detector.json

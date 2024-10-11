@@ -1,6 +1,7 @@
 package com.elliefigure8.companions.item;
 
 import com.elliefigure8.companions.CompanionsMod;
+import com.elliefigure8.companions.item.custom.DataTabletItem;
 import com.elliefigure8.companions.item.custom.FuelItem;
 import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
@@ -136,6 +137,10 @@ public class ModItems
             () -> new Item(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
+
+    //NBT DATA
+    public static final RegistryObject<Item> DATA_TABLET = ITEMS.register( "data_tablet",
+            () -> new DataTabletItem(new Item.Properties().stacksTo(1)));
 
 
 

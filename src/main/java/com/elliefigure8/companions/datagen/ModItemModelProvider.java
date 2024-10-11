@@ -49,6 +49,8 @@ public class ModItemModelProvider extends ItemModelProvider
         simpleItem(ModItems.BLACK_BELT);
         simpleItem(ModItems.GOLDEN_BELT);
 
+        simpleItem(ModItems.DATA_TABLET);
+
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item)
