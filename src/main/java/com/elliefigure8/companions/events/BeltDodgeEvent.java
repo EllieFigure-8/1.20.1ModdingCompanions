@@ -22,7 +22,7 @@ public class BeltDodgeEvent
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof BeltItem) {
                 hasBeltEquipped = true;
-                break; // Salir del bucle si encontramos un BeltItem
+                break;
             }
         }
         if (!hasBeltEquipped) return;
