@@ -3,8 +3,10 @@ package com.elliefigure8.companions;
 import com.elliefigure8.companions.block.ModBlocks;
 import com.elliefigure8.companions.enchantment.ModEnchantments;
 import com.elliefigure8.companions.events.BeltDodgeEvent;
+import com.elliefigure8.companions.events.ExampleBeltDodgeEvent;
 import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
+import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -42,6 +44,7 @@ public class CompanionsMod
 
         //Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);
+        MinecraftForge.EVENT_BUS.register(ExampleBeltDodgeEvent.class);
         //MinecraftForge.EVENT_BUS.register(ParryItemEvent.class);
 
         // Register the commonSetup method for modloading
