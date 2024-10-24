@@ -101,33 +101,4 @@ public class ExampleParryItem extends Item
 
         return ExampleParryNBT;
     }
-
-    /*
-    private static @NotNull CompoundTag getCompoundTag(ItemStack stack) {
-        CompoundTag ExampleParryNBT = stack.getOrCreateTag();
-
-        if (!ExampleParryNBT.contains("getMaxParryCooldown")) {
-            ExampleParryNBT.putInt("getMaxParryCooldown", 300);
-        }
-        if (!ExampleParryNBT.contains("maxParryDuration")) {
-            ExampleParryNBT.putInt("maxParryDuration", 20);
-        }
-        if (!ExampleParryNBT.contains("parryDuration")) {
-            ExampleParryNBT.putInt("parryDuration", 20);
-        }
-        if (!ExampleParryNBT.contains("Parrycooldown")) {
-            ExampleParryNBT.putInt("Parrycooldown", 0);
-        }
-        if (!ExampleParryNBT.contains("hasParry")) {
-            ExampleParryNBT.putBoolean("hasParry", true);
-        }
-        if (!ExampleParryNBT.contains("hasPressedParry")) {
-            ExampleParryNBT.putBoolean("hasPressedParry", false);
-        }
-        if (!ExampleParryNBT.contains("hasParriedAttack")) {
-            ExampleParryNBT.putBoolean("hasParriedAttack", false);
-        }
-
-        return ExampleParryNBT;
-    } */
 }
