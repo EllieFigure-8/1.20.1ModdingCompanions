@@ -50,23 +50,17 @@ public class ExampleParryEvent
 
                 final int getMaxParryCooldown = ExampleParryNBT.getInt("getMaxParryCooldown");
                 int parryDuration = ExampleParryNBT.getInt("parryDuration");
-                int Parrycooldown = ExampleParryNBT.getInt("Parrycooldown");
-                boolean hasParry = ExampleParryNBT.getBoolean("hasParry");
                 boolean hasPressedParry = ExampleParryNBT.getBoolean("hasPressedParry");
-                boolean hasParriedAttack = ExampleParryNBT.getBoolean("hasParriedAttack");
 
                 if (parryDuration >= 0 && hasPressedParry) {
                     player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                     System.out.println("Daño Parrieado.");
                     event.setAmount(0);
-                    Parrycooldown = getMaxParryCooldown;
-                    hasParry = false;
-                    hasParriedAttack = true;
 
                     ExampleParryNBT.putInt("parryDuration", parryDuration);
-                    ExampleParryNBT.putInt("Parrycooldown", Parrycooldown);
-                    ExampleParryNBT.putBoolean("hasParry", hasParry);
-                    ExampleParryNBT.putBoolean("hasParriedAttack", hasParriedAttack);
+                    ExampleParryNBT.putInt("Parrycooldown", getMaxParryCooldown);
+                    ExampleParryNBT.putBoolean("hasParry", false);
+                    ExampleParryNBT.putBoolean("hasParriedAttack", true);
                     stack.setTag(ExampleParryNBT);
                 }
                 break;
