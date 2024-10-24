@@ -36,7 +36,6 @@ public class ExampleParryEvent
     @SubscribeEvent
     public static void onPlayerHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
-        System.out.println("Se llamó al evento.");
 
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof ExampleParryItem) {

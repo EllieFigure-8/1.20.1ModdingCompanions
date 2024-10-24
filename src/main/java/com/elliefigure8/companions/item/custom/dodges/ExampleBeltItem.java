@@ -43,6 +43,7 @@ public class ExampleBeltItem extends Item {
     }
 
     public static int calculateCooldown(int exampleRoundedDamage) {
+        System.out.println("calculateCooldown is being used.");
         int ticksCooldown = exampleRoundedDamage * 270;
         if (ticksCooldown > 1800) { ticksCooldown = 1800; }
         if (ticksCooldown < 300) { ticksCooldown = 300; }
