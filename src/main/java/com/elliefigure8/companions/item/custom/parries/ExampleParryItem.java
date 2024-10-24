@@ -100,5 +100,5 @@ public class ExampleParryItem extends Item
         }
 
         return ExampleParryNBT;
-    }
+    } //
 }

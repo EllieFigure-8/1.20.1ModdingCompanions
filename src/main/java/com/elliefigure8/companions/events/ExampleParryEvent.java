@@ -34,7 +34,7 @@ public class ExampleParryEvent
                 System.out.println("Cooldown reiniciado. Parry está listo al entrar al mundo.");
 
                 stack.setTag(ExampleParryNBT);
-            }
+            } //
         }
     }
 
