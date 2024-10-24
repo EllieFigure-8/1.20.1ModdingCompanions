@@ -10,6 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 public class ExampleParryItem extends Item
 {
     public ExampleParryItem(Properties pProperties) {super(pProperties);}
@@ -77,6 +79,33 @@ public class ExampleParryItem extends Item
     private static @NotNull CompoundTag getCompoundTag(ItemStack stack) {
         CompoundTag ExampleParryNBT = stack.getOrCreateTag();
 
+        Map<String, Object> defaultValues = Map.of(
+                "getMaxParryCooldown", 300,
+                "maxParryDuration", 20,
+                "parryDuration", 20,
+                "Parrycooldown", 0,
+                "hasParry", true,
+                "hasPressedParry", false,
+                "hasParriedAttack", false
+        );
+
+        defaultValues.forEach((key, value) -> {
+            if (!ExampleParryNBT.contains(key)) {
+                if (value instanceof Integer) {
+                    ExampleParryNBT.putInt(key, (Integer) value);
+                } else if (value instanceof Boolean) {
+                    ExampleParryNBT.putBoolean(key, (Boolean) value);
+                }
+            }
+        });
+
+        return ExampleParryNBT;
+    }
+
+    /*
+    private static @NotNull CompoundTag getCompoundTag(ItemStack stack) {
+        CompoundTag ExampleParryNBT = stack.getOrCreateTag();
+
         if (!ExampleParryNBT.contains("getMaxParryCooldown")) {
             ExampleParryNBT.putInt("getMaxParryCooldown", 300);
         }
@@ -100,5 +129,5 @@ public class ExampleParryItem extends Item
         }
 
         return ExampleParryNBT;
-    } //
+    } */
 }

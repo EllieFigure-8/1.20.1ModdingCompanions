@@ -1,8 +1,5 @@
 package com.elliefigure8.companions.events;
 
-import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.BeltItem;
-import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
