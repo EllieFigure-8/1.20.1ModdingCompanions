@@ -43,21 +43,6 @@ public class BeltItem extends Item {
     {
         if (!level.isClientSide)
         {
-            //boolean beltCanParry = player.getInventory().contains(new ItemStack(ModItems.BLACK_BELT.get()));
-
-            /*if (KeyBindRegistry.DashAbilityKey.consumeClick())
-            {
-                System.out.println("canDodge: " + canDodge);
-                System.out.println("dodgeCooldown: " + dodgeCooldown);
-                System.out.println("Parrycooldown: " + Parrycooldown);
-                System.out.println("parryDuration: " + parryDuration);
-                System.out.println("hasParry: " + hasParry);
-                System.out.println("hasPressedParry: " + hasPressedParry);
-                System.out.println("hasParriedAttack: " + hasParriedAttack);
-                System.out.println("RedBeltParryUsed: " + RedBeltParryUsed);
-                System.out.println("RedBeltParrySharedCooldown: " + RedBeltParrySharedCooldown);
-                //System.out.println("beltCanParry: " + beltCanParry);
-            }*/
 
             if (KeyBindRegistry.ParryAbilityKey.consumeClick() && hasParry && !hasPressedParry)
             {

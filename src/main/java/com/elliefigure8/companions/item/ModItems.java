@@ -4,6 +4,7 @@ import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.custom.DataTabletItem;
 import com.elliefigure8.companions.item.custom.FuelItem;
 import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
+import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
 import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
 import com.elliefigure8.companions.item.custom.paxel.PaxelItem;
@@ -135,7 +136,7 @@ public class ModItems
 
     //Parries
     public static final RegistryObject<Item> PARRY_ITEM = ITEMS.register( "parry_item",
-            () -> new Item(new Item.Properties()
+            () -> new ExampleParryItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 

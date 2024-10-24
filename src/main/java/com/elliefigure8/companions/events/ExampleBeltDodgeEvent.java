@@ -10,37 +10,35 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ExampleBeltDodgeEvent {
+
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
+    public static void onPlayerHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
 
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof ExampleBeltItem) {
-                // Obtener el NBT del ItemStack
-                CompoundTag nbt = stack.getOrCreateTag();
 
-                // Leer el estado del NBT
+                CompoundTag nbt = stack.getOrCreateTag();
                 boolean canDodge = nbt.getBoolean("CanDodge");
                 int dodgeCooldown = nbt.getInt("DodgeCooldown");
                 int exampleRoundedDamage = nbt.getInt("ExampleRoundedDamage");
 
-                if (canDodge) {
+                if (canDodge)
+                {
                     float damage = event.getAmount();
-                    exampleRoundedDamage = (int) Math.ceil(damage); // Calcular el daño redondeado
-                    event.setAmount(0); // Cancelar el daño
+                    exampleRoundedDamage = (int) Math.ceil(damage);
+                    event.setAmount(0);
 
-                    // Calcular y establecer el nuevo cooldown
                     dodgeCooldown = ExampleBeltItem.calculateCooldown(exampleRoundedDamage);
-                    canDodge = false; // Desactivar la capacidad de dodge
+                    canDodge = false;
                     player.sendSystemMessage(Component.literal("Cooldown: " + dodgeCooldown / 20 + " seconds."));
 
-                    // Guardar el estado actualizado en el NBT
                     nbt.putBoolean("CanDodge", canDodge);
                     nbt.putInt("DodgeCooldown", dodgeCooldown);
                     nbt.putInt("ExampleRoundedDamage", exampleRoundedDamage);
-                    stack.setTag(nbt); // Aplicar el NBT actualizado al ItemStack
+                    stack.setTag(nbt);
 
-                    break; // Salir del bucle si se ha activado el dodge
+                    break;
                 }
             }
         }

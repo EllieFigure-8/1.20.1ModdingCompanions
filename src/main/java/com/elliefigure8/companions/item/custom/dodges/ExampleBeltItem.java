@@ -16,14 +16,17 @@ public class ExampleBeltItem extends Item {
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         if (!level.isClientSide) {
-            // Obtener el NBT del ItemStack
             CompoundTag nbt = stack.getOrCreateTag();
 
-            // Leer el estado actual del NBT
+            if (!nbt.contains("CanDodge"))
+            {
+                nbt.putBoolean("CanDodge", true);
+            }
+
             boolean canDodge = nbt.getBoolean("CanDodge");
             int dodgeCooldown = nbt.getInt("DodgeCooldown");
 
-            // Lógica de cooldown
+
             if (!canDodge) {
                 if (dodgeCooldown > 0) {
                     dodgeCooldown--;
@@ -33,10 +36,9 @@ public class ExampleBeltItem extends Item {
                 }
             }
 
-            // Guardar el estado actualizado en el NBT
             nbt.putBoolean("CanDodge", canDodge);
             nbt.putInt("DodgeCooldown", dodgeCooldown);
-            stack.setTag(nbt); // Aplicar el NBT actualizado al ItemStack
+            stack.setTag(nbt);
         }
     }
 
