@@ -26,15 +26,13 @@ public class ExampleParryEvent
             if (stack.getItem() instanceof ExampleParryItem) {
 
                 CompoundTag ExampleParryNBT = stack.getOrCreateTag();
-                int Parrycooldown = ExampleParryNBT.getInt("Parrycooldown");
 
-                Parrycooldown = 0;
-                ExampleParryNBT.putInt("Parrycooldown", Parrycooldown);
+                ExampleParryNBT.putInt("Parrycooldown", 0);
                 ExampleParryNBT.putBoolean("hasParry", true);
                 System.out.println("Cooldown reiniciado. Parry está listo al entrar al mundo.");
 
                 stack.setTag(ExampleParryNBT);
-            } //
+            }
         }
     }
 
