@@ -1,7 +1,8 @@
 package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
-import net.minecraft.nbt.CompoundTag;
+import com.elliefigure8.companions.util.CooldownsUtil;
+import com.elliefigure8.companions.util.items.BeltItemUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,14 +20,9 @@ public class ExampleBeltDodgeEvent {
 
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof ExampleBeltItem) {
-
-                CompoundTag nbt = stack.getOrCreateTag();
-
-                nbt.putInt("DodgeCooldown", 0);
-                nbt.putBoolean("CanDodge", true);
+                BeltItemUtil.setDodgeCooldown(stack, 0);
+                BeltItemUtil.setCanDodge(stack, true);
                 System.out.println("Cooldown reiniciado. Dodge está listo al entrar al mundo.");
-
-                stack.setTag(nbt);
             }
         }
     }
@@ -38,23 +34,19 @@ public class ExampleBeltDodgeEvent {
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof ExampleBeltItem) {
 
-                CompoundTag nbt = stack.getOrCreateTag();
-                boolean canDodge = nbt.getBoolean("CanDodge");
+                boolean canDodge = BeltItemUtil.getCanDodge(stack);
 
-                if (canDodge)
-                {
+                if (canDodge) {
                     float damage = event.getAmount();
                     int exampleRoundedDamage = (int) Math.ceil(damage);
                     event.setAmount(0);
 
-                    int calculatedCooldown = ExampleBeltItem.calculateCooldown(exampleRoundedDamage);
+                    int calculatedCooldown = CooldownsUtil.calculateCooldown(exampleRoundedDamage);
 
                     player.sendSystemMessage(Component.literal("Cooldown: " + calculatedCooldown / 20 + " seconds."));
 
-                    nbt.putBoolean("CanDodge", false);
-                    nbt.putInt("DodgeCooldown", calculatedCooldown);
-                    stack.setTag(nbt);
-
+                    BeltItemUtil.setCanDodge(stack, false);
+                    BeltItemUtil.setDodgeCooldown(stack, calculatedCooldown);
                     break;
                 }
             }

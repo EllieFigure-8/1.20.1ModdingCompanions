@@ -3,6 +3,7 @@ package com.elliefigure8.companions.item;
 import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.custom.DataTabletItem;
 import com.elliefigure8.companions.item.custom.FuelItem;
+//import com.elliefigure8.companions.item.custom.dodges.BeltWithParryItem;
 import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
 import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
@@ -119,12 +120,12 @@ public class ModItems
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> RED_BELT = ITEMS.register( "red_belt",
-            () -> new BeltItem(new Item.Properties()
+            () -> new BeltItem(new Item.Properties() //BeltWithParryItem
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> BLACK_BELT = ITEMS.register( "black_belt",
-            () -> new BeltItem(new Item.Properties()
+            () -> new BeltItem(new Item.Properties() //BeltWithParryItem
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 

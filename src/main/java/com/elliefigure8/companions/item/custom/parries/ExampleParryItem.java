@@ -2,6 +2,8 @@ package com.elliefigure8.companions.item.custom.parries;
 
 import com.elliefigure8.companions.registry.KeyBindRegistry;
 import com.elliefigure8.companions.sound.ModSounds;
+import com.elliefigure8.companions.util.items.BeltItemUtil;
+import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -19,17 +21,14 @@ public class ExampleParryItem extends Item
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         if (!level.isClientSide)
         {
-            CompoundTag ExampleParryNBT = getCompoundTag(stack);
+            final int getMaxParryCooldown = 300;
+            final int maxParryDuration = 60;
+            int parryDuration = ParryItemUtil.getParryDuration(stack);
+            int Parrycooldown = ParryItemUtil.getParryCooldown(stack);
+            boolean hasParry = ParryItemUtil.getHasParry(stack);
+            boolean hasPressedParry = ParryItemUtil.getHasPressedParry(stack);
+            boolean hasParriedAttack = ParryItemUtil.getHasParriedAttack(stack);
 
-            final int getMaxParryCooldown = ExampleParryNBT.getInt("getMaxParryCooldown");
-            final int maxParryDuration = ExampleParryNBT.getInt("maxParryDuration");
-            int parryDuration = ExampleParryNBT.getInt("parryDuration");
-            int Parrycooldown = ExampleParryNBT.getInt("Parrycooldown");
-            boolean hasParry = ExampleParryNBT.getBoolean("hasParry");
-            boolean hasPressedParry = ExampleParryNBT.getBoolean("hasPressedParry");
-            boolean hasParriedAttack = ExampleParryNBT.getBoolean("hasParriedAttack");
-
-            
             if (KeyBindRegistry.ParryAbilityKey.consumeClick() && hasParry && !hasPressedParry)
             {
                 player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_ACTIVATED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
@@ -56,7 +55,8 @@ public class ExampleParryItem extends Item
                 }
             }
 
-            if (!hasParry) {
+            if (!hasParry)
+            {
                 Parrycooldown--;
                 if (Parrycooldown <= 0) {
                     hasParry = true;
@@ -65,13 +65,11 @@ public class ExampleParryItem extends Item
                     System.out.println("Cooldown Terminado.");
                 }
             }
-
-            ExampleParryNBT.putInt("parryDuration", parryDuration);
-            ExampleParryNBT.putInt("Parrycooldown", Parrycooldown);
-            ExampleParryNBT.putBoolean("hasParry", hasParry);
-            ExampleParryNBT.putBoolean("hasPressedParry", hasPressedParry);
-            ExampleParryNBT.putBoolean("hasParriedAttack", hasParriedAttack);
-            stack.setTag(ExampleParryNBT);
+            ParryItemUtil.setParryDuration(stack, parryDuration);
+            ParryItemUtil.setParryCooldown(stack, Parrycooldown);
+            ParryItemUtil.setHasParry(stack, hasParry);
+            ParryItemUtil.setHasPressedParry(stack, hasPressedParry);
+            ParryItemUtil.setHasParriedAttack(stack, hasParriedAttack);
         }
     }
 

@@ -1,6 +1,6 @@
 package com.elliefigure8.companions.item.custom.dodges;
 
-import net.minecraft.nbt.CompoundTag;
+import com.elliefigure8.companions.util.items.BeltItemUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -16,16 +16,9 @@ public class ExampleBeltItem extends Item {
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         if (!level.isClientSide) {
-            CompoundTag nbt = stack.getOrCreateTag();
 
-            if (!nbt.contains("CanDodge"))
-            {
-                nbt.putBoolean("CanDodge", true);
-            }
-
-            boolean canDodge = nbt.getBoolean("CanDodge");
-            int dodgeCooldown = nbt.getInt("DodgeCooldown");
-
+            boolean canDodge = BeltItemUtil.getCanDodge(stack);
+            int dodgeCooldown = BeltItemUtil.getDodgeCooldown(stack);
 
             if (!canDodge) {
                 if (dodgeCooldown > 0) {
@@ -36,17 +29,8 @@ public class ExampleBeltItem extends Item {
                 }
             }
 
-            nbt.putBoolean("CanDodge", canDodge);
-            nbt.putInt("DodgeCooldown", dodgeCooldown);
-            stack.setTag(nbt);
+            BeltItemUtil.setCanDodge(stack, canDodge);
+            BeltItemUtil.setDodgeCooldown(stack, dodgeCooldown);
         }
-    }
-
-    public static int calculateCooldown(int exampleRoundedDamage) {
-        System.out.println("calculateCooldown is being used.");
-        int ticksCooldown = exampleRoundedDamage * 270;
-        if (ticksCooldown > 1800) { ticksCooldown = 1800; }
-        if (ticksCooldown < 300) { ticksCooldown = 300; }
-        return ticksCooldown;
     }
 }

@@ -2,7 +2,11 @@ package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
+import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
+import com.elliefigure8.companions.util.CooldownsUtil;
+import com.elliefigure8.companions.util.items.BeltItemUtil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -10,64 +14,81 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class BeltDodgeEvent
 {
     @SubscribeEvent
+    public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        System.out.println("Evento de inicio de sesión detectado.");
+
+        Player player = event.getEntity();
+
+        for (ItemStack stack : player.getInventory().items) {
+            if (stack.getItem() instanceof BeltItem) {
+                BeltItemUtil.setDodgeCooldown(stack, 0);
+                BeltItemUtil.setCanDodge(stack, true);
+                System.out.println("Cooldown reiniciado. Dodge está listo al entrar al mundo.");
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
 
-        boolean hasBeltEquipped = false;
+        boolean hasWhiteBelt = false;
+        boolean hasGreenBelt = false;
+        boolean hasBlueBelt = false;
+
+        ItemStack activeBelt = ItemStack.EMPTY;
+
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof BeltItem) {
-                hasBeltEquipped = true;
-                break;
+                if (stack.getItem() == ModItems.BLUE_BELT.get()) {
+                    hasBlueBelt = true;
+                    activeBelt = stack;
+                    break;
+                } else if (stack.getItem() == ModItems.GREEN_BELT.get()) {
+                    hasGreenBelt = true;
+                    activeBelt = stack;
+                } else if (stack.getItem() == ModItems.WHITE_BELT.get() && activeBelt == ItemStack.EMPTY) {
+                    hasWhiteBelt = true;
+                    activeBelt = stack;
+                }
             }
         }
-        if (!hasBeltEquipped) return;
 
-        boolean hasWhiteBelt = player.getInventory().contains(new ItemStack(ModItems.WHITE_BELT.get()));
-        boolean hasYellowBelt = player.getInventory().contains(new ItemStack(ModItems.YELLOW_BELT.get()));
-        boolean hasGreenBelt = player.getInventory().contains(new ItemStack(ModItems.GREEN_BELT.get()));
-        boolean hasBlueBelt = player.getInventory().contains(new ItemStack(ModItems.BLUE_BELT.get()));
-        boolean hasRedBelt = player.getInventory().contains(new ItemStack(ModItems.RED_BELT.get()));
-        boolean hasBlackBelt = player.getInventory().contains(new ItemStack(ModItems.BLACK_BELT.get()));
+        if (activeBelt.isEmpty()) return;
 
-        //boolean hasDodgeBelt = hasYellowBelt || hasGreenBelt || hasBlueBelt || hasRedBelt || hasBlackBelt;
-        //boolean hasParryItem = hasRedBelt || hasBlackBelt;
+        boolean canDodge = BeltItemUtil.getCanDodge(activeBelt);
 
-        if (hasWhiteBelt && Math.random() >= 0.5) return;
-        //if (!hasDodgeBelt) return;
+        if (canDodge) {
+            if (hasWhiteBelt && Math.random() >= 0.5) return;
 
-        //hasParryItem &&
-        if (BeltItem.parryDuration > 0 && BeltItem.hasPressedParry) {
-            player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
-            System.out.println("Daño Parrieado.");
-            event.setAmount(0);
-            BeltItem.hasParriedAttack = true;
-            if (hasRedBelt) {
-                BeltItem.RedBeltParryUsed = true;
-                System.out.println("RedBelt Shared Cooldown Activated.");
-            }
-        } else if (BeltItem.canDodge && !BeltItem.hasPressedParry) {
             float damage = event.getAmount();
             int roundedDamage = (int) Math.ceil(damage);
             event.setAmount(0);
+
+            int calculatedCooldown = CooldownsUtil.calculateCooldown(roundedDamage);
 
             if (hasGreenBelt) {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 0));
             }
 
-            if (hasBlueBelt || hasRedBelt || hasBlackBelt) {
+            if (hasBlueBelt) {
                 player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1));
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0));
             }
 
-            BeltItem.dodgeCooldown = BeltItem.calculateCooldown(roundedDamage);
-            BeltItem.canDodge = false;
+            BeltItemUtil.setCanDodge(activeBelt, false);
+            BeltItemUtil.setDodgeCooldown(activeBelt, calculatedCooldown);
+
             player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
-            player.sendSystemMessage(Component.literal("Cooldown: " + BeltItem.dodgeCooldown / 20 + " seconds."));
+            player.sendSystemMessage(Component.literal("Cooldown: " + calculatedCooldown / 20 + " seconds."));
         }
     }
 }
+
+
