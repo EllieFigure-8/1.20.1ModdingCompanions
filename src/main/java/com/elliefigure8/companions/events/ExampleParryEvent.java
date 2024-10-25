@@ -2,6 +2,7 @@ package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
 import com.elliefigure8.companions.sound.ModSounds;
+import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -40,22 +41,19 @@ public class ExampleParryEvent
         for (ItemStack stack : player.getInventory().items) {
             if (stack.getItem() instanceof ExampleParryItem) {
 
-                CompoundTag ExampleParryNBT = stack.getOrCreateTag();
-
-                final int getMaxParryCooldown = ExampleParryNBT.getInt("getMaxParryCooldown");
-                int parryDuration = ExampleParryNBT.getInt("parryDuration");
-                boolean hasPressedParry = ExampleParryNBT.getBoolean("hasPressedParry");
+                final int getMaxParryCooldown = 300;
+                int parryDuration = ParryItemUtil.getParryDuration(stack);
+                boolean hasPressedParry = ParryItemUtil.getHasPressedParry(stack);
 
                 if (parryDuration >= 0 && hasPressedParry) {
                     player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                     System.out.println("Daño Parrieado.");
                     event.setAmount(0);
 
-                    ExampleParryNBT.putInt("parryDuration", parryDuration);
-                    ExampleParryNBT.putInt("Parrycooldown", getMaxParryCooldown);
-                    ExampleParryNBT.putBoolean("hasParry", false);
-                    ExampleParryNBT.putBoolean("hasParriedAttack", true);
-                    stack.setTag(ExampleParryNBT);
+                    ParryItemUtil.setParryCooldown(stack, getMaxParryCooldown);
+                    ParryItemUtil.setHasParry(stack, false);
+                    ParryItemUtil.setHasPressedParry(stack, false);
+                    ParryItemUtil.setHasParriedAttack(stack, true);
                 }
                 break;
             }

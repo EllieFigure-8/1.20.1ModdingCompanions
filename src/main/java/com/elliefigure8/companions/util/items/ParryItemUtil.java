@@ -29,59 +29,70 @@ public class ParryItemUtil {
     }
 
     //Parry
-    public static void setParryCooldown(ItemStack stack, int cooldown) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putInt("ParryCooldown", cooldown);
-        stack.setTag(nbt);
-    }
+    private static final int DEFAULT_PARRY_COOLDOWN = 0;
+    private static final int DEFAULT_PARRY_DURATION = 20;
+    private static final boolean DEFAULT_HAS_PARRY = true;
+    private static final boolean DEFAULT_HAS_PRESSED_PARRY = false;
+    private static final boolean DEFAULT_HAS_PARRIED_ATTACK = false;
 
     public static int getParryCooldown(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getInt("ParryCooldown");
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("ParryCooldown")) {
+            tag.putInt("ParryCooldown", DEFAULT_PARRY_COOLDOWN);
+        }
+        return tag.getInt("ParryCooldown");
     }
 
-    public static void setParryDuration(ItemStack stack, int duration) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putInt("ParryDuration", duration);
-        stack.setTag(nbt);
+    public static void setParryCooldown(ItemStack stack, int cooldown) {
+        stack.getOrCreateTag().putInt("ParryCooldown", cooldown);
     }
 
     public static int getParryDuration(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getInt("ParryDuration");
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("ParryDuration")) {
+            tag.putInt("ParryDuration", DEFAULT_PARRY_DURATION);
+        }
+        return tag.getInt("ParryDuration");
     }
 
-    public static void setHasParry(ItemStack stack, boolean hasParry) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putBoolean("HasParry", hasParry);
-        stack.setTag(nbt);
+    public static void setParryDuration(ItemStack stack, int duration) {
+        stack.getOrCreateTag().putInt("ParryDuration", duration);
     }
 
     public static boolean getHasParry(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getBoolean("HasParry");
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("HasParry")) {
+            tag.putBoolean("HasParry", DEFAULT_HAS_PARRY);
+        }
+        return tag.getBoolean("HasParry");
     }
 
-    public static void setHasPressedParry(ItemStack stack, boolean hasPressed) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putBoolean("HasPressedParry", hasPressed);
-        stack.setTag(nbt);
+    public static void setHasParry(ItemStack stack, boolean hasParry) {
+        stack.getOrCreateTag().putBoolean("HasParry", hasParry);
     }
 
     public static boolean getHasPressedParry(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getBoolean("HasPressedParry");
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("HasPressedParry")) {
+            tag.putBoolean("HasPressedParry", DEFAULT_HAS_PRESSED_PARRY);
+        }
+        return tag.getBoolean("HasPressedParry");
     }
 
-    public static void setHasParriedAttack(ItemStack stack, boolean hasParried) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putBoolean("HasParriedAttack", hasParried);
-        stack.setTag(nbt);
+    public static void setHasPressedParry(ItemStack stack, boolean hasPressedParry) {
+        stack.getOrCreateTag().putBoolean("HasPressedParry", hasPressedParry);
     }
 
     public static boolean getHasParriedAttack(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getBoolean("HasParriedAttack");
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("HasParriedAttack")) {
+            tag.putBoolean("HasParriedAttack", DEFAULT_HAS_PARRIED_ATTACK);
+        }
+        return tag.getBoolean("HasParriedAttack");
+    }
+
+    public static void setHasParriedAttack(ItemStack stack, boolean hasParriedAttack) {
+        stack.getOrCreateTag().putBoolean("HasParriedAttack", hasParriedAttack);
     }
 
     public static void setRedBeltParryUsed(ItemStack stack, boolean used) {

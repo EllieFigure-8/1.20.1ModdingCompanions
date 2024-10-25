@@ -72,30 +72,4 @@ public class ExampleParryItem extends Item
             ParryItemUtil.setHasParriedAttack(stack, hasParriedAttack);
         }
     }
-
-    private static @NotNull CompoundTag getCompoundTag(ItemStack stack) {
-        CompoundTag ExampleParryNBT = stack.getOrCreateTag();
-
-        Map<String, Object> defaultValues = Map.of(
-                "getMaxParryCooldown", 300,
-                "maxParryDuration", 20,
-                "parryDuration", 20,
-                "Parrycooldown", 0,
-                "hasParry", true,
-                "hasPressedParry", false,
-                "hasParriedAttack", false
-        );
-
-        defaultValues.forEach((key, value) -> {
-            if (!ExampleParryNBT.contains(key)) {
-                if (value instanceof Integer) {
-                    ExampleParryNBT.putInt(key, (Integer) value);
-                } else if (value instanceof Boolean) {
-                    ExampleParryNBT.putBoolean(key, (Boolean) value);
-                }
-            }
-        });
-
-        return ExampleParryNBT;
-    }
 }
