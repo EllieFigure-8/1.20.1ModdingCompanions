@@ -9,13 +9,21 @@ import com.elliefigure8.companions.util.items.BeltItemUtil;
 import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.world.damagesource.DamageSource;
+
+import java.util.List;
 
 public class BeltDodgeAndParryEvent {
 
@@ -76,7 +84,6 @@ public class BeltDodgeAndParryEvent {
         int parryDuration = ParryItemUtil.getParryDuration(activeBelt);
         boolean hasPressedParry = ParryItemUtil.getHasPressedParry(activeBelt);
 
-
         if (hasPressedParry)
         {
             if (parryDuration >= 0) {
@@ -124,3 +131,4 @@ public class BeltDodgeAndParryEvent {
         }
     }
 }
+// windRingEffect(player, 5);

@@ -58,8 +58,8 @@
   "tooltip.companionsmod.green_belt.tooltip": "§6[Accessory]§r        \n§a[Dodge]§r        \nPress §eSHIFT§r for Description",
   "tooltip.companionsmod.blue_belt.tooltip":"§6[Accessory]§r        \n§a[Dodge]§r        \nPress §eSHIFT§r for Description",
   "tooltip.companionsmod.red_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description",
-  "tooltip.companionsmod.black_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description",
-  "tooltip.companionsmod.golden_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description",
+  "tooltip.companionsmod.black_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description        \nPress §eCTRL§r for Info        \nPress §eALT§r for Lore",
+  "tooltip.companionsmod.golden_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description        \nPress §eCTRL§r for Info        \nPress §eALT§r for Lore",
 
   "tooltip.companionsmod.white_belt.tooltip.shift": "\nHas a §b50% chance§r of dodging an attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and §b90 s§r Maximum Cooldown.",
   "tooltip.companionsmod.yellow_belt.tooltip.shift": "\nCan dodge the next attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and §b90 s§r Maximum Cooldown.",
@@ -67,6 +67,13 @@
   "tooltip.companionsmod.blue_belt.tooltip.shift":"\nCan dodge the next attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and §b90 s§r Maximum Cooldown.\nApplies §cStrenght II§r for §b3 s§r on dodge.\nApplies §c+20% Mov. Speed§r for §b3 s§r on dodge.",
   "tooltip.companionsmod.red_belt.tooltip.shift": "\nPress the §6[Parry Keybind]§r to activate a Parry effect for§b 1 s§r.\nGain Inv. Frames for§b 1 s§r after a successful parry.\nThe next attack will deal the minimum amount of damage possible.\nThen create a Wind Ring around you that deals the damage parried to mobs in§b 4 Blocks§r around you.\nThe Parry has a§b 15 s§r Cooldown.\n\nCan dodge the next attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and§b 90 s§r Maximum Cooldown.\nApplies §cStrength II§r for§b 3 s§r on dodge.\nApplies §c+20% Mov. Speed§r for§b 3 s§r on dodge.\n\nCooldowns of the Dodge and Parry are shared.",
   "tooltip.companionsmod.black_belt.tooltip.shift": "\nPress the §6[Parry Keybind]§r to activate a Parry effect for§b 1 s§r.\nGain Inv. Frames for§b 1 s§r after a successful parry.\nThe next attack will deal the minimum amount of damage possible.\nThen create a Wind Ring around you that deals the damage parried to mobs in§b 4 blocks§r around you.\nThe Parry has a§b 15 s§r Cooldown.\n\nCan dodge all attacks for§b 1 s§r.\nThe duration of the Dodge Cooldown will depend on the biggest instance of damage dodged.\n§b15 s§r Minimum and§b 90 s§r Maximum Cooldown.\nApplies §cStrength II§r for§b 3 s§r on dodge.\nApplies §c+20% Mov. Speed§r for§b 3 s§r on dodge.",
+
+  "tooltip.companionsmod.white_belt.lore":"Pure and Innocent. Your determination will be put in display by your enemies.",
+  "tooltip.companionsmod.yellow_belt.lore":"First steps has been made. Most people stops here.",
+  "tooltip.companionsmod.green_belt.lore":"Idk Green",
+  "tooltip.companionsmod.blue_belt.lore":"Idk Blue",
+  "tooltip.companionsmod.red_belt.lore":"Idk Red",
+  "tooltip.companionsmod.black_belt.lore": "Focused, respectful, and disciplined.",
 
   "tooltip.companionsmod.add_data_to_belt.tooltip": "",
 
