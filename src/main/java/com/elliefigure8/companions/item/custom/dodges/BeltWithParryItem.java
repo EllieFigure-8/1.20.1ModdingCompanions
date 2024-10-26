@@ -4,6 +4,8 @@ import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.registry.KeyBindRegistry;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.InventoryUtil;
+import com.elliefigure8.companions.util.items.BeltItemUtil;
+import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
@@ -22,26 +24,20 @@ public class BeltWithParryItem extends Item
 {
     public BeltWithParryItem(Properties pProperties) {super(pProperties);}
 
-    public static boolean canDodge;
-    public static int dodgeCooldown = 0;
-
-    public static final int getMaxParryCooldown = 300;
-    public static int Parrycooldown = 0;
-    public static final int maxParryDuration = 20;
-    public static int parryDuration = 20;
-    public static boolean hasParry = false;
-    public static boolean hasPressedParry = false;
-    public static boolean hasParriedAttack = false;
-
-    public static boolean RedBeltParryUsed = false;
-    public static int RedBeltParrySharedCooldown = 300;
-
-
     @Override
-    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
-    {
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         if (!level.isClientSide)
         {
+            boolean canDodge = BeltItemUtil.getCanDodge(stack);
+            int dodgeCooldown = BeltItemUtil.getDodgeCooldown(stack);
+
+            final int getMaxParryCooldown = 300;
+            final int maxParryDuration = 60;
+            int parryDuration = ParryItemUtil.getParryDuration(stack);
+            int Parrycooldown = ParryItemUtil.getParryCooldown(stack);
+            boolean hasParry = ParryItemUtil.getHasParry(stack);
+            boolean hasPressedParry = ParryItemUtil.getHasPressedParry(stack);
+            boolean hasParriedAttack = ParryItemUtil.getHasParriedAttack(stack);
 
             if (KeyBindRegistry.ParryAbilityKey.consumeClick() && hasParry && !hasPressedParry)
             {
@@ -50,33 +46,29 @@ public class BeltWithParryItem extends Item
                 System.out.println("Parry Activado.");
             }
 
-            if (hasPressedParry) {
+            if (hasPressedParry)
+            {
                 parryDuration--;
-
-                if (parryDuration <= 0 || hasParriedAttack)
+                if (hasParriedAttack)
+                {
+                    parryDuration = 0;
+                    hasParriedAttack = false;
+                    System.out.println("Hiciste Parry. Cancelando Parry Duration.");
+                }
+                if (parryDuration <= 0)
                 {
                     Parrycooldown = getMaxParryCooldown;
+                    parryDuration = maxParryDuration;
                     hasParry = false;
                     hasPressedParry = false;
-
-                    if (hasParriedAttack)
-                    {
-                        parryDuration = maxParryDuration;
-                        hasParriedAttack = false;
-                        System.out.println("Hiciste Parry. Cancelando Parry Duration.");
-                    }
-                    else
-                    {
-                        System.out.println("Parry Desactivado. Iniciando Cooldown.");
-                    }
+                    System.out.println("Parry Desactivado. Iniciando Cooldown.");
                 }
             }
 
             if (!hasParry)
             {
                 Parrycooldown--;
-                if (Parrycooldown <= 0)
-                {
+                if (Parrycooldown <= 0) {
                     hasParry = true;
                     parryDuration = maxParryDuration;
                     player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.PARRY_RECHARGED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
@@ -84,38 +76,23 @@ public class BeltWithParryItem extends Item
                 }
             }
 
-            if (!RedBeltParryUsed  && !canDodge)
-            {
+            if (!canDodge) {
                 if (dodgeCooldown > 0) {
                     dodgeCooldown--;
-                    addDataToBelt(player, dodgeCooldown);
-                }
-                else
-                {
+                } else {
                     canDodge = true;
                     player.sendSystemMessage(Component.literal("Cooldown Resetted! Dodge Ready!"));
                 }
             }
+            ParryItemUtil.setParryDuration(stack, parryDuration);
+            ParryItemUtil.setParryCooldown(stack, Parrycooldown);
+            ParryItemUtil.setHasParry(stack, hasParry);
+            ParryItemUtil.setHasPressedParry(stack, hasPressedParry);
+            ParryItemUtil.setHasParriedAttack(stack, hasParriedAttack);
 
-            if (RedBeltParryUsed)
-            {
-                RedBeltParrySharedCooldown--;
-                if (RedBeltParrySharedCooldown <= 0)
-                {
-                    RedBeltParryUsed = false;
-                    RedBeltParrySharedCooldown = 300;
-                    System.out.println("RedBelt Dodge and Parry can be used!");
-                }
-            }
+            BeltItemUtil.setCanDodge(stack, canDodge);
+            BeltItemUtil.setDodgeCooldown(stack, dodgeCooldown);
         }
-    }
-
-    public static int calculateCooldown(int roundedDamage)
-    {
-        int ticksCooldown = roundedDamage * 270;
-        if (ticksCooldown > 1800) {ticksCooldown = 1800;}
-        if (ticksCooldown < 300) {ticksCooldown = 300;}
-        return ticksCooldown;
     }
 
     private void addDataToBelt(Player player, int dodgeCooldown)
@@ -133,23 +110,7 @@ public class BeltWithParryItem extends Item
 
         if(Screen.hasShiftDown())
         {
-            if (pStack.getItem() == ModItems.WHITE_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.white_belt.tooltip.shift"));
-            }
-            else if (pStack.getItem() == ModItems.YELLOW_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.yellow_belt.tooltip.shift"));
-            }
-            else if (pStack.getItem() == ModItems.GREEN_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.green_belt.tooltip.shift"));
-            }
-            else if (pStack.getItem() == ModItems.BLUE_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.blue_belt.tooltip.shift"));
-            }
-            else if (pStack.getItem() == ModItems.RED_BELT.get())
+            if (pStack.getItem() == ModItems.RED_BELT.get())
             {
                 pTooltipComponents.add(Component.translatable("tooltip.companionsmod.red_belt.tooltip.shift"));
             }
@@ -168,23 +129,7 @@ public class BeltWithParryItem extends Item
         }
         else
         {
-            if (pStack.getItem() == ModItems.WHITE_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.white_belt.tooltip"));
-            }
-            else if (pStack.getItem() == ModItems.YELLOW_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.yellow_belt.tooltip"));
-            }
-            else if (pStack.getItem() == ModItems.GREEN_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.green_belt.tooltip"));
-            }
-            else if (pStack.getItem() == ModItems.BLUE_BELT.get())
-            {
-                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.blue_belt.tooltip"));
-            }
-            else if (pStack.getItem() == ModItems.RED_BELT.get())
+            if (pStack.getItem() == ModItems.RED_BELT.get())
             {
                 pTooltipComponents.add(Component.translatable("tooltip.companionsmod.red_belt.tooltip"));
             }
@@ -192,7 +137,7 @@ public class BeltWithParryItem extends Item
             {
                 pTooltipComponents.add(Component.translatable("tooltip.companionsmod.black_belt.tooltip"));
 
-                if (pStack.hasTag() && pStack.getTag().contains("tooltip.companionsmod.add_data_to_belt.tooltip") && dodgeCooldown > 0) {
+                if (pStack.hasTag() && pStack.getTag().contains("tooltip.companionsmod.add_data_to_belt.tooltip") /*&& dodgeCooldown > 0*/) {
                     String currentDodgeCooldown = pStack.getTag().getString("tooltip.companionsmod.add_data_to_belt.tooltip");
                     pTooltipComponents.add(Component.literal(currentDodgeCooldown).withStyle(ChatFormatting.RED));
                 }

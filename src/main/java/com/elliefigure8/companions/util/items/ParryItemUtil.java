@@ -29,11 +29,11 @@ public class ParryItemUtil {
     }
 
     //Parry
-    private static final int DEFAULT_PARRY_COOLDOWN = 0;
-    private static final int DEFAULT_PARRY_DURATION = 20;
-    private static final boolean DEFAULT_HAS_PARRY = true;
-    private static final boolean DEFAULT_HAS_PRESSED_PARRY = false;
-    private static final boolean DEFAULT_HAS_PARRIED_ATTACK = false;
+    public static final int DEFAULT_PARRY_COOLDOWN = 0;
+    public static final int DEFAULT_PARRY_DURATION = 20;
+    public static final boolean DEFAULT_HAS_PARRY = true;
+    public static final boolean DEFAULT_HAS_PRESSED_PARRY = false;
+    public static final boolean DEFAULT_HAS_PARRIED_ATTACK = false;
 
     public static int getParryCooldown(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
@@ -95,6 +95,7 @@ public class ParryItemUtil {
         stack.getOrCreateTag().putBoolean("HasParriedAttack", hasParriedAttack);
     }
 
+    //Red Belt Parry
     public static void setRedBeltParryUsed(ItemStack stack, boolean used) {
         CompoundTag nbt = stack.getOrCreateTag();
         nbt.putBoolean("RedBeltParryUsed", used);
@@ -104,16 +105,5 @@ public class ParryItemUtil {
     public static boolean getRedBeltParryUsed(ItemStack stack) {
         CompoundTag nbt = stack.getOrCreateTag();
         return nbt.getBoolean("RedBeltParryUsed");
-    }
-
-    public static void setRedBeltParrySharedCooldown(ItemStack stack, int sharedCooldown) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putInt("RedBeltParrySharedCooldown", sharedCooldown);
-        stack.setTag(nbt);
-    }
-
-    public static int getRedBeltParrySharedCooldown(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getInt("RedBeltParrySharedCooldown");
     }
 }

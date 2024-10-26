@@ -6,6 +6,7 @@ import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
+import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
@@ -53,6 +54,8 @@ public class BeltDodgeEvent
                 } else if (stack.getItem() == ModItems.GREEN_BELT.get()) {
                     hasGreenBelt = true;
                     activeBelt = stack;
+                } else if (stack.getItem() == ModItems.YELLOW_BELT.get()) {
+                    activeBelt = stack;
                 } else if (stack.getItem() == ModItems.WHITE_BELT.get() && activeBelt == ItemStack.EMPTY) {
                     hasWhiteBelt = true;
                     activeBelt = stack;
@@ -65,7 +68,7 @@ public class BeltDodgeEvent
         boolean canDodge = BeltItemUtil.getCanDodge(activeBelt);
 
         if (canDodge) {
-            if (hasWhiteBelt && Math.random() >= 0.5) return;
+            if (hasWhiteBelt && Math.random() >= 0.5){player.sendSystemMessage(Component.literal("You didn't dodge the attack.")); return;}
 
             float damage = event.getAmount();
             int roundedDamage = (int) Math.ceil(damage);
