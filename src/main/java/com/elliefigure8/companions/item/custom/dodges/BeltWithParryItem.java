@@ -68,6 +68,8 @@ public class BeltWithParryItem extends Item
             if (!hasParry)
             {
                 Parrycooldown--;
+                addParryDataToBelt(player, stack);
+                ParryItemUtil.setParryCooldown(stack, Parrycooldown);
                 if (Parrycooldown <= 0) {
                     hasParry = true;
                     parryDuration = maxParryDuration;
@@ -87,11 +89,10 @@ public class BeltWithParryItem extends Item
                 }
             }
 
-            ParryItemUtil.setParryDuration(stack, parryDuration);
-            ParryItemUtil.setParryCooldown(stack, Parrycooldown);
             ParryItemUtil.setHasParry(stack, hasParry);
             ParryItemUtil.setHasPressedParry(stack, hasPressedParry);
             ParryItemUtil.setHasParriedAttack(stack, hasParriedAttack);
+            ParryItemUtil.setParryDuration(stack, parryDuration);
 
             BeltItemUtil.setCanDodge(stack, canDodge);
 
@@ -101,7 +102,7 @@ public class BeltWithParryItem extends Item
     private void addDataToBelt(Player player, ItemStack stack) {
         ItemStack beltEquipped = player.getInventory().getItem(InventoryUtil.getFirstInventoryIndex(player, ModItems.BLACK_BELT.get()));
 
-        CompoundTag data = new CompoundTag();
+        CompoundTag data = beltEquipped.hasTag() ? beltEquipped.getTag() : new CompoundTag();
         int dodgeCooldown = BeltItemUtil.getDodgeCooldown(stack);
         if (dodgeCooldown >= 1)
         {
@@ -109,11 +110,24 @@ public class BeltWithParryItem extends Item
             beltEquipped.setTag(data);
         }
     }
+    private void addParryDataToBelt(Player player, ItemStack stack) {
+        ItemStack beltEquipped = player.getInventory().getItem(InventoryUtil.getFirstInventoryIndex(player, ModItems.BLACK_BELT.get()));
+
+        CompoundTag data = beltEquipped.hasTag() ? beltEquipped.getTag() : new CompoundTag();
+        int Parrycooldown = ParryItemUtil.getParryCooldown(stack);
+        if (Parrycooldown >= 1)
+        {
+            data.putString("tooltip.companionsmod.add_parrydata_to_belt.tooltip", "Parry Cooldown: " + Parrycooldown / 20 + " Seconds.");
+            beltEquipped.setTag(data);
+        }
+    }
+
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 
         int dodgeCooldown = BeltItemUtil.getDodgeCooldown(pStack);
+        int Parrycooldown = ParryItemUtil.getParryCooldown(pStack);
 
         if(Screen.hasShiftDown()) //Item Description
         {
@@ -126,15 +140,8 @@ public class BeltWithParryItem extends Item
                 pTooltipComponents.add(Component.translatable("tooltip.companionsmod.black_belt.tooltip.shift"));
             }
         }
-        else if (Screen.hasControlDown()) //Values Info (Cooldown, Charges, Stats, Etc)
-        {
-            if (pStack.getItem() == ModItems.BLACK_BELT.get() && pStack.hasTag())
-            {
-                String currentDodgeCooldown = pStack.getTag().getString("tooltip.companionsmod.add_data_to_belt.tooltip");
-                pTooltipComponents.add(Component.literal(currentDodgeCooldown));
-            }
-        }
-        else if (Screen.hasAltDown()) //Lore
+        //else if (Screen.hasAltDown()) {} // Values Info (Cooldown, Charges, Stats, Etc)
+        else if (Screen.hasControlDown()) //Lore
         {
             if (pStack.getItem() == ModItems.BLACK_BELT.get())
             {
@@ -156,13 +163,12 @@ public class BeltWithParryItem extends Item
                     String currentDodgeCooldown = pStack.getTag().getString("tooltip.companionsmod.add_data_to_belt.tooltip");
                     pTooltipComponents.add(Component.literal(currentDodgeCooldown).withStyle(ChatFormatting.RED));
                 }
+                if (pStack.hasTag() && pStack.getTag().contains("tooltip.companionsmod.add_parrydata_to_belt.tooltip") && Parrycooldown > 0) {
+                    String currentParrycooldown = pStack.getTag().getString("tooltip.companionsmod.add_parrydata_to_belt.tooltip");
+                    pTooltipComponents.add(Component.literal(currentParrycooldown).withStyle(ChatFormatting.RED));
+                }
             }
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }
-
-//if (pStack.hasTag() && pStack.getTag().contains("tooltip.companionsmod.add_data_to_belt.tooltip") && dodgeCooldown > 0) {
-//                    String currentDodgeCooldown = pStack.getTag().getString("tooltip.companionsmod.add_data_to_belt.tooltip");
-//                    pTooltipComponents.add(Component.literal(currentDodgeCooldown).withStyle(ChatFormatting.RED));
-//                }
