@@ -4,7 +4,7 @@ import com.elliefigure8.companions.CompanionsMod;
 import com.elliefigure8.companions.item.custom.DataTabletItem;
 import com.elliefigure8.companions.item.custom.FuelItem;
 //import com.elliefigure8.companions.item.custom.dodges.BeltWithParryItem;
-import com.elliefigure8.companions.item.custom.dodges.BeltWithParryItem;
+import com.elliefigure8.companions.item.custom.dodges.BlackBeltItem;
 import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
 import com.elliefigure8.companions.item.custom.dodges.RedBeltItem;
 import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
@@ -12,6 +12,7 @@ import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.dodges.BeltItem;
 import com.elliefigure8.companions.item.custom.paxel.PaxelItem;
 import com.elliefigure8.companions.item.custom.weapons.AuroritaSwordItem;
+import com.elliefigure8.companions.slots.AccessoryItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -127,7 +128,7 @@ public class ModItems
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> BLACK_BELT = ITEMS.register( "black_belt",
-            () -> new BeltWithParryItem(new Item.Properties() //
+            () -> new BlackBeltItem(new Item.Properties() //
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 
@@ -136,6 +137,11 @@ public class ModItems
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 
+
+    public static final RegistryObject<Item> ACCESSORY_ITEM = ITEMS.register( "accessory_item",
+            () -> new AccessoryItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
 
     //Parries
     public static final RegistryObject<Item> PARRY_ITEM = ITEMS.register( "parry_item",

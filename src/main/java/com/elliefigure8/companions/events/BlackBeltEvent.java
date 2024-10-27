@@ -1,31 +1,22 @@
 package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.BeltItem;
-import com.elliefigure8.companions.item.custom.dodges.BeltWithParryItem;
+import com.elliefigure8.companions.item.custom.dodges.BlackBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
 import com.elliefigure8.companions.util.items.ParryItemUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraft.world.damagesource.DamageSource;
 
-import java.util.List;
-
-public class BeltDodgeAndParryEvent {
+public class BlackBeltEvent {
 
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -34,7 +25,7 @@ public class BeltDodgeAndParryEvent {
         Player player = event.getEntity();
 
         for (ItemStack stack : player.getInventory().items) {
-            if (stack.getItem() instanceof BeltWithParryItem) {
+            if (stack.getItem() instanceof BlackBeltItem) {
 
                 ParryItemUtil.setParryDuration(stack, ParryItemUtil.DEFAULT_PARRY_DURATION);
                 ParryItemUtil.setParryCooldown(stack, ParryItemUtil.DEFAULT_PARRY_COOLDOWN);
@@ -61,7 +52,7 @@ public class BeltDodgeAndParryEvent {
         ItemStack activeBelt = ItemStack.EMPTY;
 
         for (ItemStack stack : player.getInventory().items) {
-            if (stack.getItem() instanceof BeltWithParryItem) {
+            if (stack.getItem() instanceof BlackBeltItem) {
                 if (stack.getItem() == ModItems.GOLDEN_BELT.get()) {
                     hasGoldenBelt = true;
                     activeBelt = stack;

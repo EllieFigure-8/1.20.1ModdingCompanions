@@ -20,9 +20,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BeltWithParryItem extends Item
+public class BlackBeltItem extends Item
 {
-    public BeltWithParryItem(Properties pProperties) {super(pProperties);}
+    public BlackBeltItem(Properties pProperties) {super(pProperties);}
 
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {

@@ -5,9 +5,10 @@ import com.elliefigure8.companions.enchantment.ModEnchantments;
 import com.elliefigure8.companions.events.*;
 import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
+import com.elliefigure8.companions.slots.ModContainers;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import com.elliefigure8.companions.slots.AccessoryScreen;
 
 @Mod(CompanionsMod.MOD_ID)
 public class CompanionsMod
@@ -45,9 +47,12 @@ public class CompanionsMod
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);
         MinecraftForge.EVENT_BUS.register(ExampleBeltDodgeEvent.class);
         MinecraftForge.EVENT_BUS.register(ExampleParryEvent.class);
-        MinecraftForge.EVENT_BUS.register(BeltDodgeAndParryEvent.class);
+        MinecraftForge.EVENT_BUS.register(BlackBeltEvent.class);
         MinecraftForge.EVENT_BUS.register(RedBeltEvent.class);
         //MinecraftForge.EVENT_BUS.register(ParryItemEvent.class);
+
+        //MinecraftForge.EVENT_BUS.register(ModContainers.class);
+        ModContainers.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -61,7 +66,7 @@ public class CompanionsMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        MenuScreens.register(ModContainers.ACCESSORY_CONTAINER.get(), AccessoryScreen::new);
     }
 
     // Add the example block item to the building blocks tab

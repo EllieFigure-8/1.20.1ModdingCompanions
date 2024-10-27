@@ -110,7 +110,7 @@ public class RedBeltItem extends Item
 
         int dodgeCooldown = BeltItemUtil.getDodgeCooldown(stack);
         if (dodgeCooldown >= 1) {
-            data.putString("tooltip.companionsmod.add_data_to_redbelt.tooltip", "Parry and Dodge Cooldown: " + dodgeCooldown / 20 + " Seconds.");
+            data.putString("tooltip.companionsmod.add_data_to_redbelt.tooltip", "Shared Cooldown: " + dodgeCooldown / 20 + " Seconds.");
         }
 
         beltEquipped.setTag(data);

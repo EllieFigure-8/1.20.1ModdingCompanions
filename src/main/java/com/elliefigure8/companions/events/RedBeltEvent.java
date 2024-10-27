@@ -1,7 +1,6 @@
 package com.elliefigure8.companions.events;
 
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.BeltWithParryItem;
 import com.elliefigure8.companions.item.custom.dodges.RedBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.CooldownsUtil;
@@ -45,14 +44,10 @@ public class RedBeltEvent {
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
 
-        ItemStack activeBelt = ItemStack.EMPTY;
-
-        for (ItemStack stack : player.getInventory().items) {
-            if (stack.getItem() instanceof RedBeltItem && stack.getItem() == ModItems.RED_BELT.get()) {
-                activeBelt = stack;
-                break;
-            }
-        }
+        ItemStack activeBelt = player.getInventory().items.stream()
+                .filter(stack -> stack.getItem() == ModItems.RED_BELT.get())
+                .findFirst()
+                .orElse(ItemStack.EMPTY);
 
         if (activeBelt.isEmpty()) return;
 
