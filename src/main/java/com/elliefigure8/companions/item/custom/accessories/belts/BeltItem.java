@@ -1,16 +1,11 @@
-package com.elliefigure8.companions.item.custom.dodges;
+package com.elliefigure8.companions.item.custom.accessories.belts;
 
-import com.elliefigure8.companions.events.BeltDodgeEvent;
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.registry.KeyBindRegistry;
-import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.InventoryUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,11 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
-import static net.minecraft.commands.arguments.CompoundTagArgument.getCompoundTag;
 
 public class BeltItem extends Item {
     public BeltItem(Properties pProperties) {super(pProperties);}

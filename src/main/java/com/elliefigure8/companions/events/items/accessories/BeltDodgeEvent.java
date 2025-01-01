@@ -1,15 +1,10 @@
-package com.elliefigure8.companions.events;
+package com.elliefigure8.companions.events.items.accessories;
 
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.BeltItem;
-import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
-import com.elliefigure8.companions.sound.ModSounds;
+import com.elliefigure8.companions.item.custom.accessories.belts.BeltItem;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
-import com.elliefigure8.companions.util.items.ParryItemUtil;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;

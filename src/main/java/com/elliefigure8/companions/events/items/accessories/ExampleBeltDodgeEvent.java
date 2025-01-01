@@ -1,6 +1,6 @@
-package com.elliefigure8.companions.events;
+package com.elliefigure8.companions.events.items.accessories;
 
-import com.elliefigure8.companions.item.custom.dodges.ExampleBeltItem;
+import com.elliefigure8.companions.item.custom.accessories.belts.ExampleBeltItem;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
 import net.minecraft.network.chat.Component;

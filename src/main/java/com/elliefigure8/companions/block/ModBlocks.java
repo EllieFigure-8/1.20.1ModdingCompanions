@@ -1,6 +1,7 @@
 package com.elliefigure8.companions.block;
 
 import com.elliefigure8.companions.CompanionsMod;
+import com.elliefigure8.companions.block.custom.GravestoneBlock;
 import com.elliefigure8.companions.block.custom.SoundBlock;
 import com.elliefigure8.companions.item.ModItems;
 import net.minecraft.client.resources.sounds.Sound;
@@ -33,6 +34,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
+    public static final RegistryObject<Block> GRAVESTONE = registerBlock("gravestone",
+            () -> new GravestoneBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block)

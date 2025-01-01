@@ -1,7 +1,7 @@
-package com.elliefigure8.companions.events;
+package com.elliefigure8.companions.events.items.accessories;
 
 import com.elliefigure8.companions.item.ModItems;
-import com.elliefigure8.companions.item.custom.dodges.RedBeltItem;
+import com.elliefigure8.companions.item.custom.accessories.belts.BlackBeltItem;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import com.elliefigure8.companions.util.items.BeltItemUtil;
@@ -16,7 +16,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class RedBeltEvent {
+public class BlackBeltEvent {
 
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -25,7 +25,7 @@ public class RedBeltEvent {
         Player player = event.getEntity();
 
         for (ItemStack stack : player.getInventory().items) {
-            if (stack.getItem() instanceof RedBeltItem) {
+            if (stack.getItem() instanceof BlackBeltItem) {
 
                 ParryItemUtil.setParryDuration(stack, ParryItemUtil.DEFAULT_PARRY_DURATION);
                 ParryItemUtil.setParryCooldown(stack, ParryItemUtil.DEFAULT_PARRY_COOLDOWN);
@@ -44,10 +44,28 @@ public class RedBeltEvent {
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
 
-        ItemStack activeBelt = player.getInventory().items.stream()
-                .filter(stack -> stack.getItem() == ModItems.RED_BELT.get())
-                .findFirst()
-                .orElse(ItemStack.EMPTY);
+        boolean hasRedBelt = false;
+        boolean hasBlackBelt = false;
+        boolean hasGoldenBelt = false;
+        System.out.println("This works?.");
+
+        ItemStack activeBelt = ItemStack.EMPTY;
+
+        for (ItemStack stack : player.getInventory().items) {
+            if (stack.getItem() instanceof BlackBeltItem) {
+                if (stack.getItem() == ModItems.GOLDEN_BELT.get()) {
+                    hasGoldenBelt = true;
+                    activeBelt = stack;
+                    break;
+                } else if (stack.getItem() == ModItems.BLACK_BELT.get()) {
+                    hasBlackBelt = true;
+                    activeBelt = stack;
+                } else if (stack.getItem() == ModItems.RED_BELT.get() && activeBelt == ItemStack.EMPTY) {
+                    hasRedBelt = true;
+                    activeBelt = stack;
+                }
+            }
+        }
 
         if (activeBelt.isEmpty()) return;
 
@@ -62,43 +80,46 @@ public class RedBeltEvent {
             if (parryDuration >= 0) {
                 player.getCommandSenderWorld().playSeededSound(null, player.getX(), player.getY(), player.getZ(),
                         ModSounds.DAMAGE_PARRIED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
+                System.out.println("Daño Parrieado.");
                 event.setAmount(0);
 
-                BeltItemUtil.setCanDodge(activeBelt, false);
-                BeltItemUtil.setDodgeCooldown(activeBelt, getMaxParryCooldown);
-
+                if (hasRedBelt) {
+                    BeltItemUtil.setCanDodge(activeBelt, false);
+                    BeltItemUtil.setDodgeCooldown(activeBelt, getMaxParryCooldown);
+                    System.out.println("RedBelt Cooldown Shared by: Parry");
+                }
                 ParryItemUtil.setHasParry(activeBelt, false);
                 ParryItemUtil.setParryCooldown(activeBelt, getMaxParryCooldown);
                 ParryItemUtil.setHasParriedAttack(activeBelt, true);
-
-                System.out.println("Daño Parrieado.");
-                System.out.println("RedBelt Cooldown Shared by: Parry");
             }
         }
         else
         {
             if (canDodge)
             {
-                float damage = event.getAmount();
-                int roundedDamage = (int) Math.ceil(damage);
-                event.setAmount(0);
+            float damage = event.getAmount();
+            int roundedDamage = (int) Math.ceil(damage);
+            event.setAmount(0);
 
-                int calculatedCooldown = CooldownsUtil.calculateCooldown(roundedDamage);
+            int calculatedCooldown = CooldownsUtil.calculateCooldown(roundedDamage);
 
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0));
-
+            if (hasRedBelt) {
                 ParryItemUtil.setHasParry(activeBelt, false);
                 ParryItemUtil.setParryCooldown(activeBelt, calculatedCooldown);
-
-
-                BeltItemUtil.setCanDodge(activeBelt, false);
-                BeltItemUtil.setDodgeCooldown(activeBelt, calculatedCooldown);
-
                 System.out.println("RedBelt Cooldown Shared by: Dodge");
-                player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
-                player.sendSystemMessage(Component.literal("Cooldown: " + calculatedCooldown / 20 + " seconds."));
+            }
+
+            if (hasBlackBelt) {}
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 0));
+
+            BeltItemUtil.setCanDodge(activeBelt, false);
+            BeltItemUtil.setDodgeCooldown(activeBelt, calculatedCooldown);
+
+            player.sendSystemMessage(Component.translatable("item.companionsmod.dodge_belt.dodge_activated"));
+            player.sendSystemMessage(Component.literal("Cooldown: " + calculatedCooldown / 20 + " seconds."));
             }
         }
     }
 }
+// windRingEffect(player, 5);

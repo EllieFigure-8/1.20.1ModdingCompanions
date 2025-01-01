@@ -23,7 +23,7 @@ public class ModBlockLootTables extends BlockLootSubProvider
         this.add(ModBlocks.AURORITA_ORE.get(),
                 block -> createOreDrop(ModBlocks.AURORITA_ORE.get(), ModItems.AURORITA_FRAGMENT.get()));
         this.dropSelf(ModBlocks.SOUND_BLOCK.get());
-
+        this.dropSelf(ModBlocks.GRAVESTONE.get());
     }
 
     @Override

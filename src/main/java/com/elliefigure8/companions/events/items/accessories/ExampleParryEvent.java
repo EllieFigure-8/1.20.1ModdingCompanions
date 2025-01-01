@@ -1,4 +1,4 @@
-package com.elliefigure8.companions.events;
+package com.elliefigure8.companions.events.items.accessories;
 
 import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
 import com.elliefigure8.companions.sound.ModSounds;

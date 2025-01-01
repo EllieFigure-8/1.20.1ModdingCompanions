@@ -1,4 +1,4 @@
-package com.elliefigure8.companions.item.custom.dodges;
+package com.elliefigure8.companions.item.custom.accessories.belts;
 
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.registry.KeyBindRegistry;

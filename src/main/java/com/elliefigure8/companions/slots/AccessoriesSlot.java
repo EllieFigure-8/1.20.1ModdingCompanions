@@ -1,6 +1,6 @@
 package com.elliefigure8.companions.slots;
 
-import com.elliefigure8.companions.item.custom.dodges.BeltItem;
+import com.elliefigure8.companions.item.custom.accessories.belts.BeltItem;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;

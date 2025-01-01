@@ -1,12 +1,20 @@
 package com.elliefigure8.companions.slots;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
+
+import java.text.ParseException;
 
 public class AccessoryItem extends Item {
 
@@ -15,12 +23,11 @@ public class AccessoryItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResult useOn(UseOnContext context) {
-        Player player = context.getPlayer();
-        if (!context.getLevel().isClientSide) {
-            // Abre el contenedor
-            player.openMenu(new SimpleMenuProvider((windowId, inventory, playerEntity) -> new AccessoryContainer(windowId, inventory), Component.translatable("container.accessories")));
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        if (!pLevel.isClientSide) {
+            NetworkHooks.openScreen((ServerPlayer) pPlayer, new AccessoryMenuProvider(), buffer -> {});
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
     }
+
 }

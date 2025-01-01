@@ -1,8 +1,10 @@
 package com.elliefigure8.companions;
 
+import com.elliefigure8.companions.block.ModBlockEntities;
 import com.elliefigure8.companions.block.ModBlocks;
 import com.elliefigure8.companions.enchantment.ModEnchantments;
-import com.elliefigure8.companions.events.*;
+import com.elliefigure8.companions.events.gameevents.GravestoneOnDeath;
+import com.elliefigure8.companions.events.items.accessories.*;
 import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.slots.ModContainers;
@@ -43,7 +45,13 @@ public class CompanionsMod
 
         ModEnchantments.register(modEventBus);
 
-        //Events
+        //Block Entities
+        ModBlockEntities.register(modEventBus);
+
+        //Game Events
+        MinecraftForge.EVENT_BUS.register(GravestoneOnDeath.class);
+
+        //Item Events
         MinecraftForge.EVENT_BUS.register(BeltDodgeEvent.class);
         MinecraftForge.EVENT_BUS.register(ExampleBeltDodgeEvent.class);
         MinecraftForge.EVENT_BUS.register(ExampleParryEvent.class);
@@ -63,6 +71,7 @@ public class CompanionsMod
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
     }
+
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {

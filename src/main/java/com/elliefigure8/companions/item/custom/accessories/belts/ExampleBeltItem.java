@@ -1,4 +1,4 @@
-package com.elliefigure8.companions.item.custom.dodges;
+package com.elliefigure8.companions.item.custom.accessories.belts;
 
 import com.elliefigure8.companions.util.items.BeltItemUtil;
 import net.minecraft.network.chat.Component;

@@ -20,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider
     {
         blockWithItem(ModBlocks.SOUND_BLOCK);
         blockWithItem(ModBlocks.AURORITA_ORE);
+        blockWithItem(ModBlocks.GRAVESTONE);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject)
