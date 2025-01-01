@@ -17,6 +17,7 @@ public class ModSounds
     public static final RegistryObject<SoundEvent> PARRY_ACTIVATED = registerSoundEvents ("parry_activated");
     public static final RegistryObject<SoundEvent> DAMAGE_PARRIED = registerSoundEvents ("damage_parried");
     public static final RegistryObject<SoundEvent> PARRY_RECHARGED = registerSoundEvents ("parry_recharged");
+    public static final RegistryObject<SoundEvent> RESURRECTED = registerSoundEvents ("resurrected");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name)
     {

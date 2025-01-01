@@ -16,5 +16,11 @@
     "sounds": [
       "companionsmod:parry_recharged"
     ]
+  },
+  "resurrected":{
+    "subtitle": "sounds.companionsmod.resurrected",
+    "sounds": [
+      "companionsmod:resurrected"
+    ]
   }
 }

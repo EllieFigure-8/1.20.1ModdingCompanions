@@ -1,6 +1,7 @@
 package com.elliefigure8.companions.block.custom;
 
 import com.elliefigure8.companions.block.entity.GravestoneBlockEntity;
+import com.elliefigure8.companions.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.dedicated.Settings;
@@ -30,18 +31,18 @@ public class GravestoneBlock extends Block implements EntityBlock {
 
     private boolean revivePlayer(Level pLevel, BlockPos pPos) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        Player pPlayer = null;
         if (blockEntity instanceof GravestoneBlockEntity gravestoneEntity) {
             String storedUUID = gravestoneEntity.getPlayerUUID();
-            System.out.println("GravestoneBlock Debug: Intentando revivir jugador con UUID " + storedUUID);
 
+            // Mostrar mensaje en el juego
+            pPlayer = pLevel.getNearestPlayer(pPos.getX(), pPos.getY(), pPos.getZ(), 5.0, false);
             if (storedUUID != null && !storedUUID.isEmpty()) {
                 UUID playerUUID = UUID.fromString(storedUUID);
 
                 Player targetPlayer = pLevel.getPlayerByUUID(playerUUID);
                 if (targetPlayer instanceof ServerPlayer serverPlayer) {
-                    System.out.println("GravestoneBlock Debug: Jugador encontrado: " + serverPlayer.getName().getString());
-
-                    // Revivir al jugador.
+                    // Revivir al jugador
                     if (serverPlayer.isCreative()) {
                         serverPlayer.setGameMode(GameType.SURVIVAL);
                         serverPlayer.teleportTo(pPos.getX() + 0.5, pPos.getY() + 1, pPos.getZ() + 0.5);
@@ -49,22 +50,23 @@ public class GravestoneBlock extends Block implements EntityBlock {
                         serverPlayer.setHealth(10.0F);
                         serverPlayer.getFoodData().setFoodLevel(10);
 
-                        pLevel.playSound(null, pPos, SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+                        pPlayer.getCommandSenderWorld().playSeededSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                ModSounds.RESURRECTED.get(), SoundSource.PLAYERS, 0.5f, 1f, 0);
+
                         pLevel.removeBlock(pPos, false);
 
-                        System.out.println("GravestoneBlock Debug: Jugador revivido exitosamente.");
                         return true;
                     } else {
-                        System.out.println("GravestoneBlock Debug: El jugador no está en modo espectador.");
+                        pPlayer.displayClientMessage(Component.literal("Player is Alive."), true);
                     }
                 } else {
-                    System.out.println("GravestoneBlock Debug: No se encontró un jugador con el UUID especificado.");
+                    pPlayer.displayClientMessage(Component.literal("GravestoneBlock Debug: No se encontró un jugador con el UUID especificado."), true);
                 }
             } else {
-                System.out.println("GravestoneBlock Debug: UUID vacío o nulo en la lápida.");
+                pPlayer.displayClientMessage(Component.literal("GravestoneBlock Debug: UUID vacío o nulo en la lápida."), true);
             }
         } else {
-            System.out.println("GravestoneBlock Debug: La entidad del bloque no es una instancia de GravestoneBlockEntity.");
+            pPlayer.displayClientMessage(Component.literal("GravestoneBlock Debug: La entidad del bloque no es una instancia de GravestoneBlockEntity."), true);
         }
         return false;
     }
