@@ -52,9 +52,6 @@ public class GravestoneBlock extends Block implements EntityBlock {
                         serverPlayer.setHealth(10.0F);
                         serverPlayer.getFoodData().setFoodLevel(10);
 
-                        pPlayer.getCommandSenderWorld().playSeededSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
-                                ModSounds.RESURRECTED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
-
                         for (ItemStack itemStack : gravestoneEntity.getPlayerItems()) {
                             if (!itemStack.isEmpty()) {
                                 serverPlayer.getInventory().add(itemStack);
@@ -68,7 +65,8 @@ public class GravestoneBlock extends Block implements EntityBlock {
                             }
                         }
 
-                        pLevel.playSound(null, pPos, SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+                        pPlayer.getCommandSenderWorld().playSeededSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                ModSounds.RESURRECTED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
                         pLevel.removeBlock(pPos, false);
 
                         pPlayer.displayClientMessage(Component.literal("GravestoneBlock Debug: Jugador revivido y los ítems restaurados."), true); // Mensaje en el juego
