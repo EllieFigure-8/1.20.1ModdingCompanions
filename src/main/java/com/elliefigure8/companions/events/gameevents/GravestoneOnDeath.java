@@ -66,16 +66,16 @@ public class GravestoneOnDeath {
                         ArmorItem armorItem = (ArmorItem) armor.getItem();
                         switch (armorItem.getEquipmentSlot()) {
                             case HEAD:
-                                armorItems.set(3, armor.copy()); // Colocar el casco en la ranura 3 (cabeza)
+                                armorItems.set(3, armor.copy());
                                 break;
                             case CHEST:
-                                armorItems.set(2, armor.copy()); // Colocar la pechera en la ranura 2 (torso)
+                                armorItems.set(2, armor.copy());
                                 break;
                             case LEGS:
-                                armorItems.set(1, armor.copy()); // Colocar los pantalones en la ranura 1 (piernas)
+                                armorItems.set(1, armor.copy());
                                 break;
                             case FEET:
-                                armorItems.set(0, armor.copy()); // Colocar las botas en la ranura 0 (pies)
+                                armorItems.set(0, armor.copy());
                                 break;
                         }
                     }
