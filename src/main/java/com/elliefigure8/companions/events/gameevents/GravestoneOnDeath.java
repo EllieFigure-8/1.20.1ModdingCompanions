@@ -5,6 +5,7 @@ import com.elliefigure8.companions.block.entity.GravestoneBlockEntity;
 import net.minecraft.commands.arguments.coordinates.WorldCoordinate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +16,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static net.minecraft.world.entity.EquipmentSlot.*;
 
 public class GravestoneOnDeath {
     @SubscribeEvent
@@ -51,12 +54,34 @@ public class GravestoneOnDeath {
             gravestoneEntity.setPlayerItems(items);
 
             // Guardar los ítems de la armadura
-            List<ItemStack> armorItems = new ArrayList<>();
+            List<ItemStack> armorItems = new ArrayList<>(4); // Crear una lista de tamaño 4
+            for (int i = 0; i < 4; i++) {
+                armorItems.add(ItemStack.EMPTY); // Inicializar las ranuras con ItemStack.EMPTY
+            }
+
+            // Asignar las piezas de armadura a las ranuras correspondientes
             for (ItemStack armor : player.getArmorSlots()) {
                 if (!armor.isEmpty()) {
-                    armorItems.add(armor.copy()); // Copiar armadura para evitar referencias directas
+                    if (armor.getItem() instanceof ArmorItem) {
+                        ArmorItem armorItem = (ArmorItem) armor.getItem();
+                        switch (armorItem.getEquipmentSlot()) {
+                            case HEAD:
+                                armorItems.set(3, armor.copy()); // Colocar el casco en la ranura 3 (cabeza)
+                                break;
+                            case CHEST:
+                                armorItems.set(2, armor.copy()); // Colocar la pechera en la ranura 2 (torso)
+                                break;
+                            case LEGS:
+                                armorItems.set(1, armor.copy()); // Colocar los pantalones en la ranura 1 (piernas)
+                                break;
+                            case FEET:
+                                armorItems.set(0, armor.copy()); // Colocar las botas en la ranura 0 (pies)
+                                break;
+                        }
+                    }
                 }
             }
+
             gravestoneEntity.setPlayerArmorItems(armorItems); // Guardar los ítems de armadura en la lápida
 
             System.out.println("GravestoneOnDeath Debug: Lápida creada en " + deathPos + " con UUID del jugador " + player.getUUID());
