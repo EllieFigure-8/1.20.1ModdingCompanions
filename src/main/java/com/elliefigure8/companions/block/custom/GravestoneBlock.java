@@ -45,7 +45,6 @@ public class GravestoneBlock extends Block implements EntityBlock {
                 if (targetPlayer instanceof ServerPlayer serverPlayer) {
                     pPlayer.displayClientMessage(Component.literal("GravestoneBlock Debug: Intentando revivir jugador con UUID " + storedUUID), true);
 
-                    // Revivir al jugador
                     if (serverPlayer.isCreative()) {
                         serverPlayer.setGameMode(GameType.SURVIVAL);
                         serverPlayer.teleportTo(pPos.getX() + 0.5, pPos.getY() + 1, pPos.getZ() + 0.5);
@@ -53,14 +52,12 @@ public class GravestoneBlock extends Block implements EntityBlock {
                         serverPlayer.setHealth(10.0F);
                         serverPlayer.getFoodData().setFoodLevel(10);
 
-                        // Restaurar los ítems del jugador
                         for (ItemStack itemStack : gravestoneEntity.getPlayerItems()) {
                             if (!itemStack.isEmpty()) {
-                                serverPlayer.getInventory().add(itemStack); // Añadir ítem al inventario
+                                serverPlayer.getInventory().add(itemStack);
                             }
                         }
 
-                        // Restaurar la armadura
                         List<ItemStack> armorItems = gravestoneEntity.getPlayerArmorItems();
                         for (int i = 0; i < armorItems.size(); i++) {
                             if (!armorItems.get(i).isEmpty()) {
@@ -92,7 +89,7 @@ public class GravestoneBlock extends Block implements EntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide) {
             if (revivePlayer(pLevel, pPos)) {
-                return InteractionResult.SUCCESS; // Resurrección exitosa.
+                return InteractionResult.SUCCESS;
             }
             pPlayer.displayClientMessage(Component.literal("No hay jugador muerto asociado o está desconectado."), true);
             return InteractionResult.CONSUME;
@@ -102,9 +99,9 @@ public class GravestoneBlock extends Block implements EntityBlock {
 
     @Override
     public void neighborChanged(BlockState state, Level pLevel, BlockPos pPos, Block neighborBlock, BlockPos neighborPos, boolean isMoving) {
-        super.neighborChanged(state, pLevel, pPos, neighborBlock, neighborPos, isMoving); // Llama primero a la implementación base.
+        super.neighborChanged(state, pLevel, pPos, neighborBlock, neighborPos, isMoving);
         if (!pLevel.isClientSide() && pLevel.hasNeighborSignal(pPos)) {
-            revivePlayer(pLevel, pPos); // Resucitar al jugador si hay una señal de redstone.
+            revivePlayer(pLevel, pPos);
         }
     }
 

@@ -28,7 +28,6 @@ public class GravestoneBlockEntity extends BlockEntity {
         if (player != null) {
             this.playerUUID = player.getUUID().toString();
 
-            // Debugging para verificar el UUID guardado.
             System.out.println("Entity Debug: UUID guardado = " + this.playerUUID);
         } else {
             System.out.println("Entity Debug: No se pudo guardar el UUID porque el jugador es null.");
@@ -36,18 +35,15 @@ public class GravestoneBlockEntity extends BlockEntity {
     }
 
     public String getPlayerUUID() {
-        // Debugging para verificar el UUID recuperado.
         System.out.println("Entity Debug: UUID recuperado = " + this.playerUUID);
         return this.playerUUID;
     }
 
-    // Save Items
     public List<ItemStack> getPlayerItems() {return playerItems;}
     public void setPlayerItems(List<ItemStack> playerItems) {this.playerItems = playerItems;}
 
 
 
-    // Guardar los ítems de armadura
     public void setPlayerArmorItems(List<ItemStack> playerArmorItems) {
         this.playerArmorItems = playerArmorItems;
     }
@@ -62,17 +58,15 @@ public class GravestoneBlockEntity extends BlockEntity {
         super.load(tag);
         this.playerUUID = tag.getString("playerUUID");
 
-        // Cargar ítems desde NBT
         CompoundTag itemsTag = tag.getCompound("playerItems");
         for (String key : itemsTag.getAllKeys()) {
             CompoundTag itemTag = itemsTag.getCompound(key);
             ItemStack itemStack = ItemStack.of(itemTag);
             if (!itemStack.isEmpty()) {
-                playerItems.add(itemStack);  // Solo agregar ítems no vacíos
+                playerItems.add(itemStack);
             }
         }
 
-        // Cargar ítems de armadura desde NBT
         CompoundTag armorTag = tag.getCompound("playerArmorItems");
         for (String key : armorTag.getAllKeys()) {
             CompoundTag itemTag = armorTag.getCompound(key);
@@ -84,23 +78,21 @@ public class GravestoneBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.putString("playerUUID", this.playerUUID);  // Guardar UUID del jugador
+        tag.putString("playerUUID", this.playerUUID);
 
-        // Guardar ítems en NBT
         CompoundTag itemsTag = new CompoundTag();
         for (int i = 0; i < playerItems.size(); i++) {
             ItemStack itemStack = playerItems.get(i);
             CompoundTag itemTag = itemStack.save(new CompoundTag());
-            itemsTag.put("Item" + i, itemTag);  // Usar un nombre único para cada ítem
+            itemsTag.put("Item" + i, itemTag);
         }
-        tag.put("playerItems", itemsTag);  // Guardar todos los ítems bajo la clave "playerItems"
+        tag.put("playerItems", itemsTag);
 
-        // Guardar ítems de armadura
         CompoundTag armorTag = new CompoundTag();
         for (int i = 0; i < playerArmorItems.size(); i++) {
             ItemStack itemStack = playerArmorItems.get(i);
             CompoundTag itemTag = itemStack.save(new CompoundTag());
-            armorTag.put("ArmorItem" + i, itemTag);  // Usa un nombre único por cada ítem de armadura
+            armorTag.put("ArmorItem" + i, itemTag);
         }
         tag.put("playerArmorItems", armorTag);
     }
