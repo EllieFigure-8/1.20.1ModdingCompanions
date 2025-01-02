@@ -52,6 +52,9 @@ public class GravestoneBlock extends Block implements EntityBlock {
                         serverPlayer.setHealth(10.0F);
                         serverPlayer.getFoodData().setFoodLevel(10);
 
+                        pPlayer.getCommandSenderWorld().playSeededSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                ModSounds.RESURRECTED.get(), SoundSource.PLAYERS, 0.75f, 1f, 0);
+
                         for (ItemStack itemStack : gravestoneEntity.getPlayerItems()) {
                             if (!itemStack.isEmpty()) {
                                 serverPlayer.getInventory().add(itemStack);
