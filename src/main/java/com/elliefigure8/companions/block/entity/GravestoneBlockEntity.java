@@ -18,6 +18,7 @@ import java.util.List;
 public class GravestoneBlockEntity extends BlockEntity {
     private String playerUUID = "";
     private List<ItemStack> playerItems = new ArrayList<>();
+    private List<ItemStack> playerArmorItems = new ArrayList<>();
 
     public GravestoneBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRAVESTONE.get(), pos, state);
@@ -41,12 +42,20 @@ public class GravestoneBlockEntity extends BlockEntity {
     }
 
     // Save Items
-    public List<ItemStack> getPlayerItems() {
-        return playerItems;
+    public List<ItemStack> getPlayerItems() {return playerItems;}
+    public void setPlayerItems(List<ItemStack> playerItems) {this.playerItems = playerItems;}
+
+
+
+    // Guardar los ítems de armadura
+    public void setPlayerArmorItems(List<ItemStack> playerArmorItems) {
+        this.playerArmorItems = playerArmorItems;
     }
-    public void setPlayerItems(List<ItemStack> playerItems) {
-        this.playerItems = playerItems;
+
+    public List<ItemStack> getPlayerArmorItems() {
+        return playerArmorItems;
     }
+
 
     @Override
     public void load(CompoundTag tag) {
@@ -61,6 +70,14 @@ public class GravestoneBlockEntity extends BlockEntity {
             if (!itemStack.isEmpty()) {
                 playerItems.add(itemStack);  // Solo agregar ítems no vacíos
             }
+        }
+
+        // Cargar ítems de armadura desde NBT
+        CompoundTag armorTag = tag.getCompound("playerArmorItems");
+        for (String key : armorTag.getAllKeys()) {
+            CompoundTag itemTag = armorTag.getCompound(key);
+            ItemStack itemStack = ItemStack.of(itemTag);
+            playerArmorItems.add(itemStack);
         }
     }
 
@@ -77,5 +94,14 @@ public class GravestoneBlockEntity extends BlockEntity {
             itemsTag.put("Item" + i, itemTag);  // Usar un nombre único para cada ítem
         }
         tag.put("playerItems", itemsTag);  // Guardar todos los ítems bajo la clave "playerItems"
+
+        // Guardar ítems de armadura
+        CompoundTag armorTag = new CompoundTag();
+        for (int i = 0; i < playerArmorItems.size(); i++) {
+            ItemStack itemStack = playerArmorItems.get(i);
+            CompoundTag itemTag = itemStack.save(new CompoundTag());
+            armorTag.put("ArmorItem" + i, itemTag);  // Usa un nombre único por cada ítem de armadura
+        }
+        tag.put("playerArmorItems", armorTag);
     }
 }

@@ -23,29 +23,25 @@ public class GravestoneOnDeath {
         Level world = player.getCommandSenderWorld();
         if (world.isClientSide) return;
 
-        event.setCanceled(true); //Items doesn't drop.
+        event.setCanceled(true); // Evitar que los ítems caigan al suelo.
 
         BlockPos deathPos = player.blockPosition();
 
+        // Crear la lápida en la posición de la muerte
         if (world.getBlockState(deathPos).isAir()) {
             world.setBlock(deathPos, ModBlocks.GRAVESTONE.get().defaultBlockState(), 3);
-        } else if (world.getBlockState(deathPos).isAir()) {
+        } else {
             BlockPos alternatePos = deathPos.above();
             if (world.getBlockState(alternatePos).isAir()) {
                 world.setBlock(alternatePos, ModBlocks.GRAVESTONE.get().defaultBlockState(), 3);
             }
         }
 
+        // Acceder al BlockEntity de la lápida
         if (world.getBlockEntity(deathPos) instanceof GravestoneBlockEntity gravestoneEntity) {
-            gravestoneEntity.setPlayer(player);
+            gravestoneEntity.setPlayer(player); // Guardar el UUID del jugador en la lápida
 
-            System.out.println("GravestoneOnDeath Debug: Lápida creada en " + deathPos + " con UUID del jugador " + player.getUUID());
-        }
-
-        // Guardar los ítems del jugador muerto en la lápida
-        if (world.getBlockEntity(deathPos) instanceof GravestoneBlockEntity gravestoneEntity) {
-            gravestoneEntity.setPlayer(player);
-
+            // Guardar los ítems del inventario
             List<ItemStack> items = new ArrayList<>();
             for (ItemStack item : player.getInventory().items) {
                 if (!item.isEmpty()) {
@@ -53,9 +49,17 @@ public class GravestoneOnDeath {
                 }
             }
             gravestoneEntity.setPlayerItems(items);
+
+            // Guardar los ítems de la armadura
+            List<ItemStack> armorItems = new ArrayList<>();
+            for (ItemStack armor : player.getArmorSlots()) {
+                if (!armor.isEmpty()) {
+                    armorItems.add(armor.copy()); // Copiar armadura para evitar referencias directas
+                }
+            }
+            gravestoneEntity.setPlayerArmorItems(armorItems); // Guardar los ítems de armadura en la lápida
+
+            System.out.println("GravestoneOnDeath Debug: Lápida creada en " + deathPos + " con UUID del jugador " + player.getUUID());
         }
-
-
     }
-
 }

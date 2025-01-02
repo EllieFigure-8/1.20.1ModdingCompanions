@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 
 public class GravestoneBlock extends Block implements EntityBlock {
@@ -56,6 +57,14 @@ public class GravestoneBlock extends Block implements EntityBlock {
                         for (ItemStack itemStack : gravestoneEntity.getPlayerItems()) {
                             if (!itemStack.isEmpty()) {
                                 serverPlayer.getInventory().add(itemStack); // Añadir ítem al inventario
+                            }
+                        }
+
+                        // Restaurar la armadura
+                        List<ItemStack> armorItems = gravestoneEntity.getPlayerArmorItems();
+                        for (int i = 0; i < armorItems.size(); i++) {
+                            if (!armorItems.get(i).isEmpty()) {
+                                serverPlayer.getInventory().armor.set(i, armorItems.get(i));
                             }
                         }
 
