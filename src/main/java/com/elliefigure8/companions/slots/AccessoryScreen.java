@@ -26,6 +26,9 @@ import static net.minecraft.data.models.model.TextureSlot.TEXTURE;
 @EventBusSubscriber(modid = "companionsmod", bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class AccessoryScreen extends AbstractContainerScreen<AccessoryContainer> {
 
+    //La clase AccessoryScreen es la interfaz gráfica (GUI) del inventario personalizado.
+    //Define cómo se ve la pantalla y cómo interactúa con el jugador.
+
     private static final ResourceLocation TEXTURE = new ResourceLocation("companionsmod", "textures/gui/accessories_screen.png");
 
     public AccessoryScreen(AccessoryContainer screenContainer, Inventory inv, Component title) {

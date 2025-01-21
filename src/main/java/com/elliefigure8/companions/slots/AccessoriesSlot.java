@@ -6,6 +6,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 public class AccessoriesSlot extends Slot {
+    //Coloca lugar visual. Define qué items pueden estar ahí.
+
     public AccessoriesSlot(Container pContainer, int pSlot, int pX, int pY) {
         super(pContainer, pSlot, pX, pY);
     }

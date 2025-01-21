@@ -7,6 +7,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public class AccessoryMenuProvider implements MenuProvider {
+    //Define título de inventario
+    //Proporciona lógica del contenedor para que Forge abra correctamente el inventario
 
     @Override
     public Component getDisplayName() {

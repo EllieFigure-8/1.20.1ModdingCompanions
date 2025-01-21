@@ -9,6 +9,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModContainers {
 
+    //La clase ModContainers se encarga de registrar todos los tipos de menús (contenedores) personalizados para el mod.
+
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, "companionsmod");
 
     public static final RegistryObject<MenuType<AccessoryContainer>> ACCESSORY_CONTAINER = MENUS.register("accessory_container",

@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.text.ParseException;
 
 public class AccessoryItem extends Item {
+    //Item para abrir el Inventario
 
     public AccessoryItem(Properties rarity) {
         super(new Item.Properties().stacksTo(1));

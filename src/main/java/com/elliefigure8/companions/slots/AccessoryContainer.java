@@ -1,15 +1,23 @@
 package com.elliefigure8.companions.slots;
 
 import com.elliefigure8.companions.item.custom.accessories.belts.BeltItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilItem;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Optional;
 
 public class AccessoryContainer extends AbstractContainerMenu {
+    //Maneja inventario como Items, también muestra la mochila y el cinturón.
 
     private final SimpleContainer container;
 
@@ -20,10 +28,11 @@ public class AccessoryContainer extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 super.setChanged();
-                saveAccessoryData();  // Guarda los datos cuando cambian los contenidos
+                saveAccessoryData(playerInventory.player);  // Guarda los datos cuando cambian los contenidos
             }
         };
 
+        //Solo hay 1 Slot. Aquí se agregan.
         this.addSlot(new AccessoriesSlot(container, 0, 80, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -41,7 +50,7 @@ public class AccessoryContainer extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
 
-        loadAccessoryData();  // Cargar el ítem al abrir
+        loadAccessoryData(playerInventory.player);  // Cargar el ítem al abrir
     }
 
     @Override
@@ -65,14 +74,35 @@ public class AccessoryContainer extends AbstractContainerMenu {
     }
 
     // Métodos para guardar y cargar el ítem
-    public void saveAccessoryData() {
+    public void saveAccessoryData(Player player) {
         ItemStack stack = container.getItem(0);
-        // Aquí debes guardar el `ItemStack` en algún lugar, como en la `PlayerData`
-        // Puedes hacer uso de `Player.getPersistentData()` o similar para almacenar datos específicos
+
+        if (!stack.isEmpty()) {
+            // Obtener el ResourceLocation desde el Item
+            ResourceLocation itemId = ForgeRegistries.ITEMS.getKey(stack.getItem());
+
+            // Si el ResourceLocation no es nulo, guardamos el ID del ítem y la cantidad
+            if (itemId != null) {
+                player.getPersistentData().putString("accessoryItemID", itemId.toString());
+                player.getPersistentData().putInt("accessoryItemCount", stack.getCount());
+            }
+        }
     }
 
-    public void loadAccessoryData() {
-        // Aquí debes cargar el `ItemStack` desde donde lo hayas guardado previamente
-        // y colocarlo en `container.setItem(0, itemStack);` si existe.
+    public void loadAccessoryData(Player player) {
+        String itemId = player.getPersistentData().getString("accessoryItemID");
+        int itemCount = player.getPersistentData().getInt("accessoryItemCount");
+
+        if (!itemId.isEmpty() && itemCount > 0) {
+            // Usar el ResourceLocation para obtener el ítem
+            ResourceLocation resourceLocation = new ResourceLocation(itemId);
+            Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+
+            if (item != null) {
+                // Crear el ItemStack con el ítem cargado
+                ItemStack stack = new ItemStack(item, itemCount);
+                container.setItem(0, stack);
+            }
+        }
     }
 }
