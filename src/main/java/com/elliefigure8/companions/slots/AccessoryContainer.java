@@ -24,7 +24,7 @@ public class AccessoryContainer extends AbstractContainerMenu {
     public AccessoryContainer(int id, Inventory playerInventory) {
         super(ModContainers.ACCESSORY_CONTAINER.get(), id);
 
-        this.container = new SimpleContainer(1) {
+        this.container = new SimpleContainer(2) {
             @Override
             public void setChanged() {
                 super.setChanged();
@@ -32,13 +32,11 @@ public class AccessoryContainer extends AbstractContainerMenu {
             }
         };
 
-        //Solo hay 1 Slot. Aquí se agregan.
-        this.addSlot(new AccessoriesSlot(container, 0, 80, 35) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() instanceof BeltItem;  // Solo permite `BeltItem`
-            }
-        });
+        // Slot para BeltItem
+        this.addSlot(new AccessoriesSlot(container, 0, 80, 35, BeltItem.class));
+        // Slot para VeilItem
+        this.addSlot(new AccessoriesSlot(container, 1, 100, 35, VeilItem.class));
+
 
         // Agregar slots del inventario del jugador (como antes)
         for (int i = 0; i < 3; ++i) {
@@ -75,33 +73,37 @@ public class AccessoryContainer extends AbstractContainerMenu {
 
     // Métodos para guardar y cargar el ítem
     public void saveAccessoryData(Player player) {
-        ItemStack stack = container.getItem(0);
+        for (int i = 0; i < container.getContainerSize(); i++) {
+            ItemStack stack = container.getItem(i);
 
-        if (!stack.isEmpty()) {
-            // Obtener el ResourceLocation desde el Item
-            ResourceLocation itemId = ForgeRegistries.ITEMS.getKey(stack.getItem());
+            if (!stack.isEmpty()) {
+                // Obtener el ResourceLocation desde el Item
+                ResourceLocation itemId = ForgeRegistries.ITEMS.getKey(stack.getItem());
 
-            // Si el ResourceLocation no es nulo, guardamos el ID del ítem y la cantidad
-            if (itemId != null) {
-                player.getPersistentData().putString("accessoryItemID", itemId.toString());
-                player.getPersistentData().putInt("accessoryItemCount", stack.getCount());
+                // Si el ResourceLocation no es nulo, guardamos el ID del ítem y la cantidad
+                if (itemId != null) {
+                    player.getPersistentData().putString("accessoryItemID_" + i, itemId.toString());
+                    player.getPersistentData().putInt("accessoryItemCount_" + i, stack.getCount());
+                }
             }
         }
     }
 
     public void loadAccessoryData(Player player) {
-        String itemId = player.getPersistentData().getString("accessoryItemID");
-        int itemCount = player.getPersistentData().getInt("accessoryItemCount");
+        for (int i = 0; i < container.getContainerSize(); i++) {
+            String itemId = player.getPersistentData().getString("accessoryItemID_" + i);
+            int itemCount = player.getPersistentData().getInt("accessoryItemCount_" + i);
 
-        if (!itemId.isEmpty() && itemCount > 0) {
-            // Usar el ResourceLocation para obtener el ítem
-            ResourceLocation resourceLocation = new ResourceLocation(itemId);
-            Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+            if (!itemId.isEmpty() && itemCount > 0) {
+                // Usar el ResourceLocation para obtener el ítem
+                ResourceLocation resourceLocation = new ResourceLocation(itemId);
+                Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
 
-            if (item != null) {
-                // Crear el ItemStack con el ítem cargado
-                ItemStack stack = new ItemStack(item, itemCount);
-                container.setItem(0, stack);
+                if (item != null) {
+                    // Crear el ItemStack con el ítem cargado
+                    ItemStack stack = new ItemStack(item, itemCount);
+                    container.setItem(i, stack); // Coloca el ítem cargado en el slot correspondiente
+                }
             }
         }
     }
