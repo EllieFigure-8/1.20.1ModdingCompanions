@@ -1,4 +1,4 @@
-package com.elliefigure8.companions.item.custom.parries;
+package com.elliefigure8.companions.item.custom.accessories.parries;
 
 import com.elliefigure8.companions.registry.KeyBindRegistry;
 import com.elliefigure8.companions.sound.ModSounds;

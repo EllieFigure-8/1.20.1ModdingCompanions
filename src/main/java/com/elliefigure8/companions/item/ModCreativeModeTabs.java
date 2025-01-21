@@ -36,6 +36,13 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.AURORITA_LEGGINGS.get());
                         pOutput.accept(ModItems.AURORITA_BOOTS.get());
 
+                        //Wings
+                        pOutput.accept(ModItems.LEAF_ELYTRAS.get());
+                        pOutput.accept(ModItems.AURORITA_BOOSTERS.get());
+                        pOutput.accept(ModItems.AQUARITA_FINS.get());
+                        pOutput.accept(ModItems.NETHERITE_WINGS.get());
+                        pOutput.accept(ModItems.STEAM_PUNKER_WINGS.get());
+
                         //NBT DATA
                         pOutput.accept(ModItems.DATA_TABLET.get());
 

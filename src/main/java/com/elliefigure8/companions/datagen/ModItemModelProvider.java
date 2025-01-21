@@ -49,6 +49,17 @@ public class ModItemModelProvider extends ItemModelProvider
         simpleItem(ModItems.BLACK_BELT);
         simpleItem(ModItems.GOLDEN_BELT);
 
+        simpleItem(ModItems.VEIL);
+        simpleItem(ModItems.VEIL_OF_DARKNESS);
+        simpleItem(ModItems.VEIL_OF_VOID);
+        simpleItem(ModItems.VEIL_OF_NULLITY);
+
+        simpleItem(ModItems.LEAF_ELYTRAS);
+        simpleItem(ModItems.AURORITA_BOOSTERS);
+        simpleItem(ModItems.AQUARITA_FINS);
+        simpleItem(ModItems.NETHERITE_WINGS);
+        simpleItem(ModItems.STEAM_PUNKER_WINGS);
+
         simpleItem(ModItems.DATA_TABLET);
 
     }

@@ -10,5 +10,32 @@ public class CooldownsUtil {
         return ticksCooldown;
     }
 
+    public static boolean DashIsOnCooldown = false;
+    public static int MaxCooldown = 180;
+    public static int Cooldown = 180;
+
+    public static void DashActivateCooldown()
+    {
+        DashIsOnCooldown = true;
+    }
+
+    public static void DashUpdateCooldown()
+    {
+        if (DashIsOnCooldown)
+        {
+            Cooldown--;
+            if (Cooldown <= 0)
+            {
+                DashResetCooldown();
+            }
+        }
+    }
+
+    public static void DashResetCooldown()
+    {
+        Cooldown = MaxCooldown;
+        DashIsOnCooldown = false;
+    }
+
     // Otras funciones relacionadas con cooldowns se pueden agregar aquí si lo necesitas en el futuro.
 }

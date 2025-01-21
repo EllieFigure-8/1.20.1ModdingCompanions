@@ -7,7 +7,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyBindRegistry {
-    public static final String CATEGORY = "key.category.alliesmod";
+    public static final String CATEGORY = "key.category.companionsmod";
     public static final String KEY_WINGS_ABILITY = "key.wingsability.activate";
     public static final String KEY_SETBONUS_ABILITY = "key.setbonusability.activate";
     public static final String KEY_DASH_ABILITY = "key.dashability.activate";

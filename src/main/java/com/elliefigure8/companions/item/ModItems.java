@@ -7,7 +7,12 @@ import com.elliefigure8.companions.item.custom.FuelItem;
 import com.elliefigure8.companions.item.custom.accessories.belts.BlackBeltItem;
 import com.elliefigure8.companions.item.custom.accessories.belts.ExampleBeltItem;
 import com.elliefigure8.companions.item.custom.accessories.belts.RedBeltItem;
-import com.elliefigure8.companions.item.custom.parries.ExampleParryItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfDarknessItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfNullityItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfVoidItem;
+import com.elliefigure8.companions.item.custom.accessories.wings.*;
+import com.elliefigure8.companions.item.custom.accessories.parries.ExampleParryItem;
 import com.elliefigure8.companions.item.custom.tools.MetalDetectorItem;
 import com.elliefigure8.companions.item.custom.accessories.belts.BeltItem;
 import com.elliefigure8.companions.item.custom.paxel.PaxelItem;
@@ -148,6 +153,41 @@ public class ModItems
             () -> new ExampleParryItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
+
+    //Dashes
+    public static final RegistryObject<Item> VEIL = ITEMS.register("veil",
+            () -> new VeilItem(new Item.Properties()));
+    public static final RegistryObject<Item> VEIL_OF_DARKNESS = ITEMS.register("veil_of_darkness",
+            () -> new VeilOfDarknessItem(new Item.Properties()));
+    public static final RegistryObject<Item> VEIL_OF_VOID = ITEMS.register("veil_of_void",
+            () -> new VeilOfVoidItem(new Item.Properties()));
+    public static final RegistryObject<Item> VEIL_OF_NULLITY = ITEMS.register("veil_of_nullity",
+            () -> new VeilOfNullityItem(new Item.Properties()));
+
+    //Wings
+
+    public static final RegistryObject<Item> AURORITA_BOOSTERS = ITEMS.register( "aurorita_boosters",
+            () -> new AuroritaBoostersItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> NETHERITE_WINGS = ITEMS.register( "netherite_wings",
+            () -> new NetheriteWingsItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> AQUARITA_FINS = ITEMS.register( "aquarita_fins",
+            () -> new AquaritaFinsItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> LEAF_ELYTRAS = ITEMS.register( "leaf_elytras",
+            () -> new LeafElytrasItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> STEAM_PUNKER_WINGS = ITEMS.register("steam_punker_wings",
+            () -> new SteamPunkerWingsItem(new Item.Properties()));
+
+
+
+
+
+
+
+
 
     //NBT DATA
     public static final RegistryObject<Item> DATA_TABLET = ITEMS.register( "data_tablet",

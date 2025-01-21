@@ -1,7 +1,10 @@
-// 1.20.1	2024-10-05T20:33:53.8925101	Block States: companionsmod
+// 1.20.1	2025-01-18T23:25:03.7533944	Block States: companionsmod
 ef65ea856452a8d4bd64ff5c5f98ad99ea5fcfc5 assets/companionsmod/blockstates/aurorita_ore.json
+25af57b0614cb003251c28b3345f3a6390f43771 assets/companionsmod/blockstates/gravestone.json
 1cfac59d2c72a82e505c409fc9e3c02d723f4be2 assets/companionsmod/blockstates/sound_block.json
 e62c01cbc91059e1e93a093251c7d41f36b6758c assets/companionsmod/models/block/aurorita_ore.json
+884daac4b7593c4b5e5a6b36607de97f513e3ba7 assets/companionsmod/models/block/gravestone.json
 537878d72d25993577808edc041178775d3361f2 assets/companionsmod/models/block/sound_block.json
 5576aa29f24fa67de34d440c451540b49fbf4323 assets/companionsmod/models/item/aurorita_ore.json
+71b775bbb93859bae74841eaaae016bf970cbc45 assets/companionsmod/models/item/gravestone.json
 49d1905bf2817e239c3a47d5ae3537b9b313591e assets/companionsmod/models/item/sound_block.json

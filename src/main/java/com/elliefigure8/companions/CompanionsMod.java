@@ -7,6 +7,14 @@ import com.elliefigure8.companions.events.gameevents.GravestoneOnDeath;
 import com.elliefigure8.companions.events.items.accessories.*;
 import com.elliefigure8.companions.item.ModCreativeModeTabs;
 import com.elliefigure8.companions.item.ModItems;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfDarknessItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfNullityItem;
+import com.elliefigure8.companions.item.custom.accessories.dashes.VeilOfVoidItem;
+import com.elliefigure8.companions.item.custom.accessories.wings.AquaritaFinsItem;
+import com.elliefigure8.companions.item.custom.accessories.wings.AuroritaBoostersItem;
+import com.elliefigure8.companions.item.custom.accessories.wings.LeafElytrasItem;
+import com.elliefigure8.companions.item.custom.accessories.wings.NetheriteWingsItem;
 import com.elliefigure8.companions.slots.ModContainers;
 import com.elliefigure8.companions.sound.ModSounds;
 import com.mojang.logging.LogUtils;
@@ -57,6 +65,16 @@ public class CompanionsMod
         MinecraftForge.EVENT_BUS.register(ExampleParryEvent.class);
         MinecraftForge.EVENT_BUS.register(BlackBeltEvent.class);
         MinecraftForge.EVENT_BUS.register(RedBeltEvent.class);
+
+        MinecraftForge.EVENT_BUS.register(VeilItem.class);
+        MinecraftForge.EVENT_BUS.register(VeilOfDarknessItem.class);
+        MinecraftForge.EVENT_BUS.register(VeilOfVoidItem.class);
+        MinecraftForge.EVENT_BUS.register(VeilOfNullityItem.class);
+
+        MinecraftForge.EVENT_BUS.register(LeafElytrasItem.class);
+        MinecraftForge.EVENT_BUS.register(AuroritaBoostersItem.class);
+        MinecraftForge.EVENT_BUS.register(AquaritaFinsItem.class);
+        MinecraftForge.EVENT_BUS.register(NetheriteWingsItem.class);
         //MinecraftForge.EVENT_BUS.register(ParryItemEvent.class);
 
         //MinecraftForge.EVENT_BUS.register(ModContainers.class);
