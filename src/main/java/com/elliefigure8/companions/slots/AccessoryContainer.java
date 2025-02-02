@@ -3,6 +3,7 @@ package com.elliefigure8.companions.slots;
 import com.elliefigure8.companions.item.custom.accessories.belts.BeltItem;
 import com.elliefigure8.companions.item.custom.accessories.dashes.VeilItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -73,36 +74,41 @@ public class AccessoryContainer extends AbstractContainerMenu {
 
     // Métodos para guardar y cargar el ítem
     public void saveAccessoryData(Player player) {
+        CompoundTag accessoryTag = new CompoundTag();
         for (int i = 0; i < container.getContainerSize(); i++) {
             ItemStack stack = container.getItem(i);
 
             if (!stack.isEmpty()) {
-                // Obtener el ResourceLocation desde el Item
+                CompoundTag slotTag = new CompoundTag();
                 ResourceLocation itemId = ForgeRegistries.ITEMS.getKey(stack.getItem());
-
-                // Si el ResourceLocation no es nulo, guardamos el ID del ítem y la cantidad
                 if (itemId != null) {
-                    player.getPersistentData().putString("accessoryItemID_" + i, itemId.toString());
-                    player.getPersistentData().putInt("accessoryItemCount_" + i, stack.getCount());
+                    slotTag.putString("id", itemId.toString());
+                    slotTag.putInt("count", stack.getCount());
+                    accessoryTag.put("slot_" + i, slotTag);
                 }
+            } else {
+
             }
+            player.getPersistentData().put("accessoryData", accessoryTag);
         }
     }
 
     public void loadAccessoryData(Player player) {
-        for (int i = 0; i < container.getContainerSize(); i++) {
-            String itemId = player.getPersistentData().getString("accessoryItemID_" + i);
-            int itemCount = player.getPersistentData().getInt("accessoryItemCount_" + i);
-
-            if (!itemId.isEmpty() && itemCount > 0) {
-                // Usar el ResourceLocation para obtener el ítem
-                ResourceLocation resourceLocation = new ResourceLocation(itemId);
-                Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
-
-                if (item != null) {
-                    // Crear el ItemStack con el ítem cargado
-                    ItemStack stack = new ItemStack(item, itemCount);
-                    container.setItem(i, stack); // Coloca el ítem cargado en el slot correspondiente
+        if (player.getPersistentData().contains("accessoryData", Tag.TAG_COMPOUND)) {
+            CompoundTag accessoryTag = player.getPersistentData().getCompound("accessoryData");
+            for (int i = 0; i < container.getContainerSize(); i++) {
+                if (accessoryTag.contains("slot_" + i, Tag.TAG_COMPOUND)) {
+                    CompoundTag slotTag = accessoryTag.getCompound("slot_" + i);
+                    String itemId = slotTag.getString("id");
+                    int count = slotTag.getInt("count");
+                    if (!itemId.isEmpty() && count > 0) {
+                        ResourceLocation resourceLocation = new ResourceLocation(itemId);
+                        Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+                        if (item != null) {
+                            ItemStack stack = new ItemStack(item, count);
+                            container.setItem(i, stack);
+                        }
+                    }
                 }
             }
         }
