@@ -1,13 +1,20 @@
 package com.elliefigure8.companions.item.custom.accessories.dashes;
 
+import com.elliefigure8.companions.item.ModItems;
 import com.elliefigure8.companions.registry.KeyBindRegistry;
 import com.elliefigure8.companions.util.CooldownsUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class VeilItem extends Item {
 
@@ -89,5 +96,25 @@ public class VeilItem extends Item {
         player.hurtMarked = true;
 
         CooldownsUtil.DashActivateCooldown();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced ) {
+
+        if(Screen.hasShiftDown())
+        {
+            if (pStack.getItem() == ModItems.VEIL.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.veil.tooltip.shift"));
+            }
+        }
+        else
+        {
+            if (pStack.getItem() == ModItems.VEIL.get())
+            {
+                pTooltipComponents.add(Component.translatable("tooltip.companionsmod.veil"));
+            }
+        }
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

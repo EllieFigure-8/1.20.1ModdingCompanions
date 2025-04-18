@@ -30,6 +30,12 @@
   "item.companionsmod.red_belt": "Red Belt",
   "item.companionsmod.black_belt": "Black Belt",
 
+  "item.companionsmod.veil": "Veil",
+  "item.companionsmod.veil_of_darkness": "Veil of Darkness",
+  "item.companionsmod.veil_of_void": "Veil Of Void",
+  "item.companionsmod.veil_of_nullity": "Veil Of Nullity",
+
+
   "item.companionsmod.dodge_belt.dodge_activated": "Dodge Activated",
 
   "key.category.companionsmod": "Companions Mod Controls",
@@ -52,6 +58,11 @@
 
   "item.companionsmod.metal_detector.no_valuables": "No Valuables Found!",
 
+  "tooltip.companionsmod.veil": "§6[Accessory]§r        \n§a[Dash]§r        \nPress §eSHIFT§r for Description",
+  "tooltip.companionsmod.veil_of_darkness": "§6[Accessory]§r        \n§a[Dash]§r        \nPress §eSHIFT§r for Description",
+  "tooltip.companionsmod.veil_of_void": "§6[Accessory]§r        \n§a[Dash]§r        \nPress §eSHIFT§r for Description",
+  "tooltip.companionsmod.veil_of_nullity": "§6[Accessory]§r        \n§a[Dash]§r        \nPress §eSHIFT§r for Description",
+
   "tooltip.companionsmod.white_belt.tooltip": "§6[Accessory]§r        \n§a[Dodge]§r        \nPress §eSHIFT§r for Description",
   "tooltip.companionsmod.yellow_belt.tooltip": "§6[Accessory]§r        \n§a[Dodge]§r        \nPress §eSHIFT§r for Description",
   "tooltip.companionsmod.green_belt.tooltip": "§6[Accessory]§r        \n§a[Dodge]§r        \nPress §eSHIFT§r for Description",
@@ -59,6 +70,11 @@
   "tooltip.companionsmod.red_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description",
   "tooltip.companionsmod.black_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description        \nPress §eCTRL§r for Lore",
   "tooltip.companionsmod.golden_belt.tooltip": "§6[Accessory]§r        \n§a[Parry]§r §a[Dodge]§r        \nPress §eSHIFT§r for Description        \nPress §eCTRL§r for Lore",
+
+  "tooltip.companionsmod.veil.tooltip.shift": "\nCan dash towards the direction you are moving. Dash forward if not moving.\n§b4 Blocks§r dash distance. \nHas a §c1 s§r Cooldown.\n§7Doesn't stack with other Dashes. Overwritten by Shield Bashes.§r",
+  "tooltip.companionsmod.veil_of_darkness.tooltip.shift": "\nCan dash towards the direction you are moving. Dash forward if not moving.\n§b6 Blocks§r dash distance. \nHas a §c1 s§r Cooldown.\n§7Doesn't stack with other Dashes. Overwritten by Shield Bashes.§r",
+  "tooltip.companionsmod.veil_of_void.tooltip.shift": "\nCan dash towards the direction you are moving. Dash forward if not moving.\n§b8 Blocks§r dash distance. \nHas a §c1 s§r Cooldown.\n§7Doesn't stack with other Dashes. Overwritten by Shield Bashes.§r",
+  "tooltip.companionsmod.veil_of_nullity.tooltip.shift": "\nCan dash towards the direction you are moving. Dash forward if not moving.\n§b10 Blocks§r dash distance. \nHas a §c1 s§r Cooldown.\n§7Doesn't stack with other Dashes. Overwritten by Shield Bashes.§r",
 
   "tooltip.companionsmod.white_belt.tooltip.shift": "\nHas a §b50% chance§r of dodging an attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and §b90 s§r Maximum Cooldown.\nDoesn't stack with other Dodges.",
   "tooltip.companionsmod.yellow_belt.tooltip.shift": "\nCan dodge the next attack.\nThe duration of the Dodge Cooldown will depend on the damage dodged.\n§b15 s§r Minimum and §b90 s§r Maximum Cooldown.\nDoesn't stack with other Dodges.",
